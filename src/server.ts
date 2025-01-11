@@ -46,9 +46,9 @@ server.get("/drivers", async (request, reply) => {
 
 server.get<{ Params: { name: string } }>("/images/:name", async (request, reply) => {
     const teamName: string = request.params.name
-    if (fs.existsSync(path.join(__dirname, `./data/teams_photo/${teamName}.png.avif`))) {
-        let image = fs.readFileSync(path.join(__dirname, `./data/teams_photo/${teamName}.png.avif`))
-        image = Buffer.from(image)
+
+    if (fs.existsSync(path.join(__dirname, `./data/teams_photo/${teamName}.png`))) {
+        const image = fs.readFileSync(path.join(__dirname, `./data/teams_photo/${teamName}.png`))
         reply.status(200).type("image/png").send(image)
     } else {
         reply.code(400).send({ message: "image not found" })
