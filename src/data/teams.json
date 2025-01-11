@@ -1,0 +1,54 @@
+{
+    "teams": [
+        {
+            "id": 1,
+            "name": "Ferrari",
+            "country": "Italy"
+        },
+        {
+            "id": 2,
+            "name": "McLaren",
+            "country": "United Kingdom"
+        },
+        {
+            "id": 3,
+            "name": "Red Bull Racing",
+            "country": "United Kingdom"
+        },
+        {
+            "id": 4,
+            "name": "Mercedes",
+            "country": "Germany"
+        },
+        {
+            "id": 5,
+            "name": "Alpine",
+            "country": "France"
+        },
+        {
+            "id": 6,
+            "name": "Aston Martin",
+            "country": "United Kingdom"
+        },
+        {
+            "id": 7,
+            "name": "RB Visa Cash",
+            "country": "Italy"
+        },
+        {
+            "id": 8,
+            "name": "Sauber",
+            "country": "Switzerland"
+        },
+        {
+            "id": 9,
+            "name": "Williams",
+            "country": "United Kingdom"
+        },
+        {
+            "id": 10,
+            "name": "Haas",
+            "country": "United States"
+        }
+    ]
+}
