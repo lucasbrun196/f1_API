@@ -12,7 +12,6 @@ export const AppDataSorce = new DataSource({
     database: process.env.DATABASE_DB,
     migrations: ['src/database/migrations/*.ts'],
     synchronize: false,
-
     logging: true,
 
 });

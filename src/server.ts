@@ -6,16 +6,6 @@ import "reflect-metadata"
 import { AppDataSorce } from "./database/data-source"
 
 
-interface ENV {
-    host: string;
-    port: number;
-}
-
-const envs: ENV = {
-    host: process.env.HOST ?? "",
-    port: Number(process.env.PORT)
-}
-
 const server = fastify({ logger: true })
 
 server.register(cors, {
@@ -24,7 +14,6 @@ server.register(cors, {
         "GET"
     ]
 })
-
 
 interface Driver {
     id: number,
