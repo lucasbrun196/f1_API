@@ -7,16 +7,22 @@
     "dist": "tsup src",
     "start:dev": "tsx --env-file=.env src/server.ts",
     "start:watch": "tsx watch --env-file=.env  src/server.ts",
-    "start:dist": "npm run dist && node dist/src/index.js"
+    "start:dist": "npm run dist && node dist/src/index.js",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:create": "npm run typeorm migration:create -n",
+    "migration:run": "npx typeorm-ts-node-commonjs migration:run -d src/database/data-source.ts",
+    "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d src/database/data-source.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.11.30",
+    "ts-node": "^10.9.2",
     "tsup": "^8.0.2",
     "tsx": "^4.7.1",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.3",
+    "dotenv": "^16.4.7"
   },
   "dependencies": {
     "@fastify/cors": "^10.0.1",

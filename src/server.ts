@@ -2,6 +2,8 @@ import fastify from "fastify"
 import cors from "@fastify/cors"
 import * as fs from "fs"
 import path from "path"
+import "reflect-metadata"
+import { AppDataSorce } from "./database/data-source"
 
 
 interface ENV {
@@ -68,6 +70,10 @@ server.get<{ Params: { id: string } }>("/drivers/:id", async (request, reply) =>
     reply.send(findDriver)
 })
 
-server.listen({ host: envs.host, port: envs.port }, () => {
-    console.log("server init");
-})
+AppDataSorce.initialize().then(() => {
+    console.log("Data Source has been initialized with successfully")
+    server.listen({ port: Number(process.env.PORT), host: process.env.HOST }, () => {
+        console.log("Server has been initialized with successfully")
+    })
+}).catch((error) => console.log("Error during Data Source initialization ", error))
+
