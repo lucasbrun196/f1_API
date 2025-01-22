@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config()
 
-export const AppDataSorce = new DataSource({
+export const AppDataSource = new DataSource({
     type: 'postgres',
     host: process.env.HOST_DB,
     port: Number(process.env.PORT_DB),
