@@ -1,6 +1,7 @@
 import "reflect-metadata"
 import { AppDataSource } from "./database/data-source"
 import { createApp } from "./app"
+import "reflect-metadata"
 
 
 const server = createApp()

@@ -1,14 +1,31 @@
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
 
+
+@Entity("Team")
 export class TeamEntity{
-    teamName: String
-    country: String
-    about: String
-    pathImageTeam: String
+
+    @PrimaryGeneratedColumn()
+    id?: number
+
+    @Column("varchar") 
+    teamName: string;
+
+    @Column("varchar") 
+    country: string;
+
+    @Column("text") 
+    about: string;
+
+    @Column("varchar") 
+    pathImageTeam: string;
     
-    constructor (params: {teamName: String, country: String, about: String, pathImageTeam: String}){
-       this.teamName = params.teamName
-       this.country = params.country
-       this.about = params.about
-       this.pathImageTeam = params.pathImageTeam
+    constructor (params: {teamName: string, country: string, about: string, pathImageTeam: string, id?: number}){
+        if(params.id){
+            this.id = params.id
+        }
+        this.teamName = params.teamName
+        this.country = params.country
+        this.about = params.about
+        this.pathImageTeam = params.pathImageTeam
     }
 }

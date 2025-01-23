@@ -8,7 +8,20 @@ export class TeamDataSource implements ITeamDataSource{
         this.db = db
     }
     async call(params: TeamEntity): Promise<void> {
-        // TO DO
+        await this.db.createQueryBuilder()
+        .insert()
+        .into("Team")
+        .values([
+            {
+                teamName: params.teamName,
+                country: params.country,
+                about: params.about,
+                pathImageTeam: params.pathImageTeam
+            }
+        ])
+        .execute()
     }
+
+    // TO DO: IMPLEMENTS ERROR TREATMENTS AND VALIDATIONS
 
 }
