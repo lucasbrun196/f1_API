@@ -15,14 +15,8 @@ export class PostTeamController{
         this.service = new TeamService(datasource)
     }
     postTeamController = async (request: FastifyRequest, reply: FastifyReply) => {
-        const body = request.body as any
-        const team = new TeamEntity({
-            teamName: body.TeamName,
-            country: body.Country,
-            about: body.About,
-            pathImageTeam: body.PathImage
-        })
-        this.service.call(team)
+        const body = request.body
+        //this.service.call(body)
         return reply.code(201).send({message: "created"})
     }
 }
