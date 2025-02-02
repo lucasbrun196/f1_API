@@ -19,13 +19,13 @@ export class TeamEntity{
     @Column("varchar") 
     pathImageTeam: string;
     
-    constructor (params: {teamName: string, country: string, about: string, pathImageTeam: string, id?: number}){
-        if(params.id){
-            this.id = params.id
+    constructor (teamName: string, country: string, about: string, pathImageTeam: string, id?: number){
+        if(id != null){
+            this.id = id
         }
-        this.teamName = params.teamName
-        this.country = params.country
-        this.about = params.about
-        this.pathImageTeam = params.pathImageTeam
+        this.teamName = teamName
+        this.country = country
+        this.about = about
+        this.pathImageTeam = pathImageTeam
     }
 }
