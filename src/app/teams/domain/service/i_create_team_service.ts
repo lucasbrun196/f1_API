@@ -1,5 +1,5 @@
 
 
-export interface ITeamService{
+export interface ICreateTeamService{
     call(params: any): Promise<void>
 }

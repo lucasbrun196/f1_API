@@ -1,9 +1,9 @@
 import { DataSource } from "typeorm";
 import { TeamEntity } from "../domain/entities/team_entity";
-import { ITeamDataSource } from "./i_team_datasource";
-import ErrorResponse from "../../../exceptions/error";
+import { ICreateTeamDataSource } from "./i_create_team_datasource";
+import ErrorResponse from "../../../responses/error";
 
-export class TeamDataSource implements ITeamDataSource{
+export class CreateTeamDataSource implements ICreateTeamDataSource{
     private db: DataSource
     constructor(db: DataSource){
         this.db = db
