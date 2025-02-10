@@ -18,10 +18,9 @@ export class GetTeamController {
         this.service = new GetTeamService(datasource)
     }
 
-    getTeamController = async (request: FastifyRequest, reply: FastifyReply) => {
+    getTeamController = async (request: FastifyRequest<{Querystring: FilterTeamParams}>, reply: FastifyReply) => {
         try{
-            const query = request.query as FilterTeamParams
-            const params = new FilterTeamParams(query.name, query.country)
+            const params = new FilterTeamParams(request.query.name, request.query.country)
             const teams = await this.service.call(params)
             const s = new SuccessResponse()
             if(teams.data.length === 0){

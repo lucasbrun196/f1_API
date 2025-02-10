@@ -8,8 +8,7 @@ export class CreateTeamService implements ICreateTeamService{
     constructor(teamDataSource: CreateTeamDataSource){
         this.teamDataSource = teamDataSource
     }
-    async call(params: any): Promise<void> {
-        
+    async call(params: TeamEntity): Promise<void> {
         return this.teamDataSource.call(params)
     }
 
