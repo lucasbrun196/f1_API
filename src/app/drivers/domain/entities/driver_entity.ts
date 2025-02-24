@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { TeamEntity } from "../../../teams/domain/entities/team_entity";
 
 
@@ -24,6 +24,7 @@ export class DriverEntity{
     nationality: string
 
     @ManyToOne(() => TeamEntity, (team: TeamEntity) => team.drivers, {nullable: true, onDelete: "SET NULL"})
+    @JoinColumn({name: "id_team_fk"})
     team?: TeamEntity
 
     constructor(
@@ -36,16 +37,16 @@ export class DriverEntity{
         team?: TeamEntity,
         id?: number,
     ){
-        this.driverName = driverName,
-        this.birthday = birthday,
-        this.pathImageDriver = pathImageDriver,
-        this.titleCount = titleCount,
-        this.nationality = nationality
-        if(id != null){
-            this.id = id
+        this.driverName = driverName;
+        this.birthday = birthday;
+        this.pathImageDriver = pathImageDriver;
+        this.titleCount = titleCount;
+        this.nationality = nationality;
+        if(id !== undefined){
+            this.id = id;
         }
-        if(team != null){
-            this.team = team
+        if(team !== undefined){
+            this.team = team;
         }
     }
 

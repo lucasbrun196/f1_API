@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { PostTeamController } from "./controller/post_teams_controller";
 import { validateSchemaMiddleware } from "../../middlewares/validate_schema"
-import validate from "../../schemas/team/body_schema"
+import validate from "../../schemas/team/team_body_schema"
 import { GetTeamController } from "./controller/get_team_controller";
 import { DeleteTeamController } from "./controller/delete_team_controller";
 

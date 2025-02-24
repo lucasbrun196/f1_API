@@ -27,7 +27,7 @@ export class PostTeamController{
             )
             
             await this.service.call(teamEntity)
-            const s = new SuccessResponse(201)
+            const s = new SuccessResponse(201, 'Created')
             return reply.code(s.statusCode).send({message: s.message})
         }catch(error){
             if(error instanceof ErrorResponse){
