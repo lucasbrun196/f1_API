@@ -13,16 +13,18 @@ export class CreateDriverDataSource implements ICreateDriverDataSource{
     }
 
     async call(params: DriverEntity): Promise<void>{
+        
         let existingTeam
         if(params.team != null){
+            const idTeam = Number(params.team)
             existingTeam = await this.db.getRepository(TeamEntity).findOne({
-                where: {id: params.team.id}
+                where: {id: idTeam}
             })
             if(existingTeam == null){
                 throw new ErrorResponse(400, "Team must be created")
             }
         }
-        console.log(existingTeam);
+
         
         await this.db.getRepository(DriverEntity).save({
             driverName: params.driverName,
