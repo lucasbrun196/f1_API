@@ -33,3 +33,11 @@ export class TeamEntity{
         this.pathImageTeam = pathImageTeam
     }
 }
+
+export type TeamEntityJson = {
+    teamName: string,
+    country: string,
+    about: string,
+    pathImageTeam: string,
+    id?: number
+}

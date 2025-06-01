@@ -5,27 +5,23 @@ import { TeamEntity } from "../../teams/domain/entities/team_entity";
 import ErrorResponse from "../../../responses/error";
 
 
-export class CreateDriverDataSource implements ICreateDriverDataSource{
+export class CreateDriverDataSource implements ICreateDriverDataSource {
     private db: DataSource
 
-    constructor(db: DataSource){
+    constructor(db: DataSource) {
         this.db = db
     }
 
-    async call(params: DriverEntity): Promise<void>{
-        
-        let existingTeam
-        if(params.team != null){
-            const idTeam = Number(params.team)
+    async call(params: DriverEntity): Promise<void> {
+        let existingTeam;
+        if (params.team != null) {
             existingTeam = await this.db.getRepository(TeamEntity).findOne({
-                where: {id: idTeam}
+                where: { id: Number(params.team) }
             })
-            if(existingTeam == null){
+            if (existingTeam == null) {
                 throw new ErrorResponse(400, "Team must be created")
             }
         }
-
-        
         await this.db.getRepository(DriverEntity).save({
             driverName: params.driverName,
             birthday: params.birthday,

@@ -1,24 +1,34 @@
 import { IGetDriverDataSource } from "../datasource/i_get_driver_datasource";
 import { DriverEntity } from "../domain/entities/driver_entity";
-import { DriversAndTeam } from "../domain/entities/drivers_and_teams";
+import { GetDriverEntity } from "../domain/entities/get_driver_entity";
 import { FilterDriverParams } from "../domain/params/filter_driver_params";
 import { IGetDriverRepository } from "../domain/repository/i_get_driver_repository";
 
-export class GetDriverRepository implements IGetDriverRepository{
+export class GetDriverRepository implements IGetDriverRepository {
     private readonly datasource;
-    constructor(datasource: IGetDriverDataSource){
+    constructor(datasource: IGetDriverDataSource) {
         this.datasource = datasource;
     }
-    async call(params: FilterDriverParams): Promise<DriverEntity[] | DriversAndTeam[]> {
+    async call(params: FilterDriverParams): Promise<GetDriverEntity[]> {
         const res = await this.datasource.call(params);
-        if(params.isGetTeam){
-            let resList: DriversAndTeam[] = [];
-            res.forEach((element) => {
-                const indexTeam: number = resList.findIndex((e) => e.teamId == element.teamId);
-                if(indexTeam === -1){
-                }
-            });
-        }
-        return res;
+        return res.map((element) => new GetDriverEntity({
+            driverId: element.id!,
+            driverName: element.driverName,
+            driverBirthday: element.birthday,
+            driverNationality: element.nationality,
+            driverPathImage: element.pathImageDriver,
+            driverTitleCount: element.titleCount,
+            driverTeam:
+                params.isGetTeam === true ?
+                    {
+                        id: element.team!.id,
+                        teamName: element.team!.teamName,
+                        about: element.team!.about,
+                        country: element.team!.country,
+                        pathImageTeam: element.team!.pathImageTeam,
+                    }
+                    : undefined,
+        }))
+
     }
 }
