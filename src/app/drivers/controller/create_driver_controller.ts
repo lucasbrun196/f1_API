@@ -6,13 +6,15 @@ import { ICreateDriverService } from "../domain/service/i_create_driver_service"
 import { CreateDriverService } from "../domain/service/create_driver_service";
 import { CreateDriverDataSource } from "../datasource/create_driver_datasource";
 import { AppDataSource } from "../../../database/data-source";
+import { CreateDriverRepository } from "../data/create_driver_repository";
 
 export class CreateDriverController{
     private service: ICreateDriverService
     constructor(){
         const db = AppDataSource
         const datasource = new CreateDriverDataSource(db)
-        this.service = new CreateDriverService(datasource)
+        const repository = new CreateDriverRepository(datasource);
+        this.service = new CreateDriverService(repository)
     }
     createDriverController = async (request: FastifyRequest, reply: FastifyReply) => {
         try{

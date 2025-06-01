@@ -3,14 +3,14 @@ import { DriverEntity } from "../domain/entities/driver_entity";
 import { IGetDriverDataSource } from "./i_get_driver_datasource";
 import { FilterDriverParams } from "../domain/params/filter_driver_params";
 import { TeamEntity } from "../../teams/domain/entities/team_entity";
+import { DriversAndTeam } from "../domain/entities/drivers_and_teams";
 
 export class GetDriverDataSource implements IGetDriverDataSource{
     private db: DataSource
     constructor(db: DataSource){
         this.db = db
     }
-    async call(params: FilterDriverParams): Promise<DriverEntity[]> {
- 
+    async call(params: FilterDriverParams): Promise<any[]> {
             let query = this.db.createQueryBuilder()
             .select("*")
             .from(DriverEntity, "Driver")
@@ -21,11 +21,7 @@ export class GetDriverDataSource implements IGetDriverDataSource{
             if(params.teamId){
                 query.where("Driver.id_team_fk = :teamId", {teamId: params.teamId})
             }
-            return query.execute()
-        
-
-
-
+            return await query.execute()
     }
 
 }
