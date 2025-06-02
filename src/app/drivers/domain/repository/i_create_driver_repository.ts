@@ -1,5 +1,5 @@
-import { DriverEntity } from "../entities/driver_entity";
+import { DriverEntityJson } from "../entities/typeorm/driver_entity";
 
-export interface ICreateDriverRepository{
-    call(params: DriverEntity): Promise<void>;
+export interface ICreateDriverRepository {
+    call(params: DriverEntityJson): Promise<void>;
 }

@@ -1,4 +1,5 @@
-import { TeamEntityJson } from "../../../teams/domain/entities/team_entity";
+import { GetTeamJson } from "../../../teams/domain/entities/get_team_entity";
+import { TeamEntityJson } from "../../../teams/domain/entities/typeorm/team_entity";
 
 export class GetDriverEntity {
     readonly driverId;
@@ -37,5 +38,5 @@ export type GetDriverJson = {
     driverBirthday: string;
     driverPathImage: string;
     driverTitleCount: number;
-    driverTeam: TeamEntityJson | undefined;
+    driverTeam: GetTeamJson | undefined;
 }

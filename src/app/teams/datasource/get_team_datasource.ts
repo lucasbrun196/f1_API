@@ -1,28 +1,25 @@
 import { DataSource } from "typeorm";
-import { TeamEntity } from "../domain/entities/team_entity";
-import { IGetTeamDataSource } from "./i_get_team_datasource";
-import { FilterTeamParams } from "../domain/params/filter_team_params";
+import { IGetTeamDatasource } from "./i_get_team_datasource";
+import { TeamEntity } from "../domain/entities/typeorm/team_entity";
+import { FilterTeamParams } from "../domain/entities/params/filter_team_params";
 
-export class GetTeamDataSource implements IGetTeamDataSource{
+export class GetTeamDatasource implements IGetTeamDatasource {
     private db: DataSource
 
-    constructor(db: DataSource){
+    constructor(db: DataSource) {
         this.db = db;
     }
 
     async call(params: FilterTeamParams): Promise<TeamEntity[]> {
-        let query = this.db.createQueryBuilder()
-        .select("*")
-        .from(TeamEntity, 'team')
-        if(params.name != null){
-            query.where("team.teamName = :name", {name: params.name})
+        const query = this.db.getRepository(TeamEntity).createQueryBuilder();
+        if (params.name) {
+            query.where({ teamName: params.name })
+        } else if (params.country) {
+            query.where({ country: params.country })
         }
-        if(params.country != null){
-            query.andWhere("team.country = :country", {country: params.country})
-        }
-        return query.execute()
+        console.log(query);
 
-
+        return await query.getMany();
     }
 
 }

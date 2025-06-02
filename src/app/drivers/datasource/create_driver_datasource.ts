@@ -1,11 +1,11 @@
 import { DataSource } from "typeorm";
-import { DriverEntity } from "../domain/entities/driver_entity";
-import { ICreateDriverDataSource } from "./i_create_driver_datasource";
-import { TeamEntity } from "../../teams/domain/entities/team_entity";
+import { DriverEntity } from "../domain/entities/typeorm/driver_entity";
+import { ICreateDriverDatasource } from "./i_create_driver_datasource";
+import { TeamEntity } from "../../teams/domain/entities/typeorm/team_entity";
 import ErrorResponse from "../../../responses/error";
 
 
-export class CreateDriverDataSource implements ICreateDriverDataSource {
+export class CreateDriverDatasource implements ICreateDriverDatasource {
     private db: DataSource
 
     constructor(db: DataSource) {
@@ -31,5 +31,4 @@ export class CreateDriverDataSource implements ICreateDriverDataSource {
             team: existingTeam ?? undefined
         })
     }
-
 }

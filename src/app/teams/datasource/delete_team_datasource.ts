@@ -1,19 +1,33 @@
 import { DataSource } from "typeorm";
-import { IDeleteTeamDataSource } from "./i_delete_team_datasource";
-import { TeamEntity } from "../domain/entities/team_entity";
+import { IDeleteTeamDatasource } from "./i_delete_team_datasource";
+import { TeamEntity } from "../domain/entities/typeorm/team_entity";
+import ErrorResponse from "../../../responses/error";
+import { DriverEntity } from "../../drivers/domain/entities/typeorm/driver_entity";
 
-export class DeleteTeamDataSource implements IDeleteTeamDataSource{
+export class DeleteTeamDatasource implements IDeleteTeamDatasource {
     private db: DataSource
 
-    constructor(db: DataSource){
+    constructor(db: DataSource) {
         this.db = db
     }
 
-    async call(params: number): Promise<void>{
-        await this.db.createQueryBuilder()
-        .delete()
-        .from(TeamEntity)
-        .where('id = :id', {id: params})
-        .execute()
+    async call(params: number): Promise<void> {
+        const query = this.db.getRepository(TeamEntity);
+        const exist = await query.findOneBy(
+            { id: params, }
+        );
+        if (exist !== null) {
+            await this.db.createQueryBuilder()
+                .update(DriverEntity)
+                .set({
+                    team: null,
+                })
+                .where({
+                    team: params
+                }).execute();
+            await query.delete({ id: params });
+        } else {
+            throw new ErrorResponse(404, 'Team id not found');
+        }
     }
 }

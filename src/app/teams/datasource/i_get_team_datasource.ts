@@ -1,6 +1,6 @@
-import { TeamEntity } from "../domain/entities/team_entity";
-import { FilterTeamParams } from "../domain/params/filter_team_params";
+import { TeamEntity } from "../domain/entities/typeorm/team_entity";
+import { FilterTeamParams } from "../domain/entities/params/filter_team_params";
 
-export interface IGetTeamDataSource{
+export interface IGetTeamDatasource {
     call(params: FilterTeamParams): Promise<TeamEntity[]>
 }

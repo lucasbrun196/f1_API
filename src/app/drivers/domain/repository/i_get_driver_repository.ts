@@ -1,6 +1,6 @@
 import { GetDriverEntity } from "../entities/get_driver_entity";
-import { FilterDriverParams } from "../params/filter_driver_params";
+import { FilterDriverParamsJson } from "../entities/params/filter_driver_params";
 
-export interface IGetDriverRepository{
-    call(params: FilterDriverParams): Promise<GetDriverEntity[]>;
+export interface IGetDriverRepository {
+    call(params: FilterDriverParamsJson): Promise<GetDriverEntity[]>;
 }

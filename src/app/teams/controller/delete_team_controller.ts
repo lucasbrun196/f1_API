@@ -1,18 +1,20 @@
 import { FastifyReply, FastifyRequest } from "fastify"
 import { AppDataSource } from "../../../database/data-source"
-import { DeleteTeamDataSource } from "../datasource/delete_team_datasource"
+import { DeleteTeamDatasource } from "../datasource/delete_team_datasource"
 import { DeleteTeamService } from "../domain/service/delete_team_service"
 import { IDeleteTeamService } from "../domain/service/i_delete_team_service"
 import ErrorResponse from "../../../responses/error"
 import SuccessResponse from "../../../responses/success"
+import { DeleteTeamRepository } from "../data/delete_team_repository"
 
 export class DeleteTeamController {
 
     private service: IDeleteTeamService
     constructor() {
         const db = AppDataSource
-        const datasource = new DeleteTeamDataSource(db)
-        this.service = new DeleteTeamService(datasource)
+        const datasource = new DeleteTeamDatasource(db)
+        const repository = new DeleteTeamRepository(datasource);
+        this.service = new DeleteTeamService(repository);
     }
 
     deleteTeamController = async (request: FastifyRequest<{ Params: { id: number } }>, reply: FastifyReply) => {

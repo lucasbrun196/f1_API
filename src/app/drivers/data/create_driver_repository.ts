@@ -1,13 +1,21 @@
-import { ICreateDriverDataSource } from "../datasource/i_create_driver_datasource";
-import { DriverEntity } from "../domain/entities/driver_entity";
+import { ICreateDriverDatasource } from "../datasource/i_create_driver_datasource";
+import { DriverEntity, DriverEntityJson } from "../domain/entities/typeorm/driver_entity";
 import { ICreateDriverRepository } from "../domain/repository/i_create_driver_repository";
 
 export class CreateDriverRepository implements ICreateDriverRepository {
     private readonly datasource;
-    constructor(datasource: ICreateDriverDataSource) {
+    constructor(datasource: ICreateDriverDatasource) {
         this.datasource = datasource;
     }
-    async call(params: DriverEntity): Promise<void> {
-        return await this.datasource.call(params);
+    async call(params: DriverEntityJson): Promise<void> {
+        const driver = new DriverEntity(
+            params.driverName,
+            params.driverBirthday,
+            params.driverPathImage,
+            params.driverTitleCount ?? 0,
+            params.driverNationality,
+            params.driverIdTeam
+        )
+        return await this.datasource.call(driver);
     }
 }

@@ -1,5 +1,5 @@
-import { DriverEntity } from "../domain/entities/driver_entity";
+import { DriverEntity } from "../domain/entities/typeorm/driver_entity";
 
-export interface ICreateDriverDataSource{
+export interface ICreateDriverDatasource {
     call(params: DriverEntity): Promise<void>
 }

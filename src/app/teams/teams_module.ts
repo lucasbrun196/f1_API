@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { PostTeamController } from "./controller/post_teams_controller";
+import { PostTeamController } from "./controller/create_team_controller";
 import { GetTeamController } from "./controller/get_team_controller";
 import { DeleteTeamController } from "./controller/delete_team_controller";
 

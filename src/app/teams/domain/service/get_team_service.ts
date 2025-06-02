@@ -1,20 +1,15 @@
-import { GetTeamDataSource } from "../../datasource/get_team_datasource";
-import { IGetTeamDataSource } from "../../datasource/i_get_team_datasource";
-import { TeamEntity } from "../entities/team_entity";
-import { FilterTeamParams } from "../params/filter_team_params";
+import { FilterTeamParamsJson } from "../entities/params/filter_team_params";
 import { IGetTeamService } from "./i_get_team_service";
+import { IGetTeamRepository } from "../repository/i_get_team_repository";
+import { GetTeamEntity } from "../entities/get_team_entity";
 
-export class GetTeamService implements IGetTeamService{
-    private teamDataSource: IGetTeamDataSource
-    constructor(teamDataSource: GetTeamDataSource){
-        this.teamDataSource = teamDataSource
+export class GetTeamService implements IGetTeamService {
+    private readonly repository;
+    constructor(repository: IGetTeamRepository) {
+        this.repository = repository
     }
-    async call(params: FilterTeamParams): Promise<{"data": TeamEntity[]}> {
-        
-        let teamsList = await this.teamDataSource.call(params).then((e) => e)
-        return {
-            "data": teamsList
-        }
+    async call(params: FilterTeamParamsJson): Promise<GetTeamEntity[]> {
+        return await this.repository.call(params);
     }
 
 }

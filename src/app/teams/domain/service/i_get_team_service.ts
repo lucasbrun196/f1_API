@@ -1,6 +1,6 @@
-import { TeamEntity } from "../entities/team_entity";
-import { FilterTeamParams } from "../params/filter_team_params";
+import { FilterTeamParamsJson } from "../entities/params/filter_team_params";
+import { GetTeamEntity } from "../entities/get_team_entity";
 
-export interface IGetTeamService{
-    call(params: FilterTeamParams): Promise<{"data": TeamEntity[]}>
+export interface IGetTeamService {
+    call(params: FilterTeamParamsJson): Promise<GetTeamEntity[]>
 }
