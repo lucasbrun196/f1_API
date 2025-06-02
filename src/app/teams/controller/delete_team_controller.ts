@@ -22,7 +22,7 @@ export class DeleteTeamController {
             const params: number = request.params.id
             await this.service.call(params)
             const s = new SuccessResponse(200, 'Deleted')
-            return reply.code(s.statusCode).send(s.message)
+            return reply.code(s.statusCode).send({ message: s.message })
         } catch (error) {
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message })

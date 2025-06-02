@@ -11,10 +11,12 @@ export class GetDriverDatasource implements IGetDriverDatasource {
     async call(params: FilterDriverParams): Promise<DriverEntity[]> {
         const query = this.db.getRepository(DriverEntity)
             .createQueryBuilder("driver");
-        if (params.isGetTeam) query.innerJoinAndSelect("driver.team", "team");
+        if (params.isGetTeam) query.leftJoinAndSelect("driver.team", "team");
         if (params.driverName) query.where("driver.driverName = :driverName", { driverName: params.driverName })
         if (params.teamId) query.andWhere("driver.team.id = :teamId", { teamId: params.teamId });
         query.orderBy('driver.id', 'ASC')
+        console.log(await query.getMany());
+
         return await query.getMany();
     }
 

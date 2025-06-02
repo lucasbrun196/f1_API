@@ -38,5 +38,5 @@ export type GetDriverJson = {
     driverBirthday: string;
     driverPathImage: string;
     driverTitleCount: number;
-    driverTeam: GetTeamJson | undefined;
+    driverTeam: GetTeamJson | {} | undefined;
 }
