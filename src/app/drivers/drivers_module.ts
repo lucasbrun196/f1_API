@@ -11,7 +11,7 @@ export class DriversModule {
         const putController = new PutDriverController();
         app.post('/driver', postController.createDriverController);
         app.get('/driver', getController.getDriverController);
-        app.put('/driver', putController.putDriverController);
+        app.put('/driver/:id', putController.putDriverController);
 
     }
 }

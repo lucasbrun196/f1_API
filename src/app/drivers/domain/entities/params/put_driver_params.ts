@@ -1,14 +1,26 @@
 import ErrorResponse from "../../../../../responses/error";
 
 export class PutDriverParams {
-
+    readonly driverId;
     readonly driverTitleCount;
     readonly driverTeam;
     constructor({
         driverTitleCount,
-        driverTeam
+        driverTeam,
+        driverId,
     }: PutDriverParamsJson
     ) {
+        if (typeof driverId == 'string') {
+            driverId = Number(driverId);
+            if (isNaN(driverId)) {
+                throw new ErrorResponse(422, 'Invalid driver id');
+            }
+            this.driverId = driverId;
+
+        }
+        this.driverId = Number(driverId);
+
+
         if (driverTeam === undefined && driverTeam === undefined) {
             throw new ErrorResponse(422, 'You should update unless one propriete');
         }
@@ -19,9 +31,9 @@ export class PutDriverParams {
                 throw new ErrorResponse(422, 'driverTitleCout must be a number');
             }
             this.driverTitleCount = driverTitleCount;
-        } else {
-            this.driverTitleCount = driverTitleCount;
         }
+        this.driverTitleCount = driverTitleCount;
+
 
         this.driverTitleCount = driverTitleCount;
         if (typeof driverTeam == 'string') {
@@ -40,6 +52,7 @@ export class PutDriverParams {
 }
 
 export type PutDriverParamsJson = {
+    driverId: number | string;
     driverTitleCount: number | undefined;
     driverTeam: number | undefined;
 }
