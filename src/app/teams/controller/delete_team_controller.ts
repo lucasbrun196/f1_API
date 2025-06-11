@@ -6,6 +6,7 @@ import { IDeleteTeamService } from "../domain/service/i_delete_team_service"
 import ErrorResponse from "../../../responses/error"
 import SuccessResponse from "../../../responses/success"
 import { DeleteTeamRepository } from "../data/delete_team_repository"
+import { DeleteTeamJson, DeleteTeamParams } from "../domain/entities/params/delete_team_params"
 
 export class DeleteTeamController {
 
@@ -19,7 +20,7 @@ export class DeleteTeamController {
 
     deleteTeamController = async (request: FastifyRequest<{ Params: { id: number } }>, reply: FastifyReply) => {
         try {
-            const params: number = request.params.id
+            const params: DeleteTeamJson = request.params;
             await this.service.call(params)
             const s = new SuccessResponse(200, 'Deleted')
             return reply.code(s.statusCode).send({ message: s.message })
