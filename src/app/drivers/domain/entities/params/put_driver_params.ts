@@ -17,26 +17,25 @@ export class PutDriverParams {
             }
             this.driverId = driverId;
 
+        } else {
+            this.driverId = driverId;
         }
-        this.driverId = Number(driverId);
-
 
         if (driverTeam === undefined && driverTeam === undefined) {
             throw new ErrorResponse(422, 'You should update unless one propriete');
         }
 
-        if (typeof driverTitleCount == 'string') {
+        if (typeof driverTitleCount == 'string' && driverTitleCount !== undefined) {
             driverTitleCount = Number(driverTitleCount);
             if (isNaN(driverTitleCount)) {
                 throw new ErrorResponse(422, 'driverTitleCout must be a number');
             }
             this.driverTitleCount = driverTitleCount;
+        } else {
+            this.driverTitleCount = driverTitleCount;
         }
-        this.driverTitleCount = driverTitleCount;
 
-
-        this.driverTitleCount = driverTitleCount;
-        if (typeof driverTeam == 'string') {
+        if (typeof driverTeam == 'string' && driverTeam !== undefined) {
             driverTeam = Number(driverTeam);
             if (isNaN(driverTeam)) {
                 throw new ErrorResponse(422, 'driverTeam must be a number')

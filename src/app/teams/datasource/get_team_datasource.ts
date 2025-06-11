@@ -4,7 +4,7 @@ import { TeamEntity } from "../domain/entities/typeorm/team_entity";
 import { FilterTeamParams } from "../domain/entities/params/filter_team_params";
 
 export class GetTeamDatasource implements IGetTeamDatasource {
-    private db: DataSource
+    private readonly db;
 
     constructor(db: DataSource) {
         this.db = db;

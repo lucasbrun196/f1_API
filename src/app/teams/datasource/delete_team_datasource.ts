@@ -6,7 +6,7 @@ import { DriverEntity } from "../../drivers/domain/entities/typeorm/driver_entit
 import { DeleteTeamParams } from "../domain/entities/params/delete_team_params";
 
 export class DeleteTeamDatasource implements IDeleteTeamDatasource {
-    private db: DataSource
+    private readonly db;
 
     constructor(db: DataSource) {
         this.db = db

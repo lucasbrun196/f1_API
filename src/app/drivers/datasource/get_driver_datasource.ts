@@ -4,7 +4,7 @@ import { IGetDriverDatasource } from "./i_get_driver_datasource";
 import { FilterDriverParams } from "../domain/entities/params/filter_driver_params";
 
 export class GetDriverDatasource implements IGetDriverDatasource {
-    private db: DataSource
+    private readonly db;
     constructor(db: DataSource) {
         this.db = db
     }

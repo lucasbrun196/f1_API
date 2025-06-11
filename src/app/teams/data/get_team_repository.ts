@@ -1,7 +1,6 @@
 import { IGetTeamDatasource } from "../datasource/i_get_team_datasource";
 import { GetTeamEntity } from "../domain/entities/get_team_entity";
 import { FilterTeamParams, FilterTeamParamsJson } from "../domain/entities/params/filter_team_params";
-import { TeamEntity } from "../domain/entities/typeorm/team_entity";
 import { IGetTeamRepository } from "../domain/repository/i_get_team_repository";
 
 export class GetTeamRepository implements IGetTeamRepository {

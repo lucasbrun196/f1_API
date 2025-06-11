@@ -6,7 +6,7 @@ import ErrorResponse from "../../../responses/error";
 
 
 export class CreateDriverDatasource implements ICreateDriverDatasource {
-    private db: DataSource
+    private readonly db;
 
     constructor(db: DataSource) {
         this.db = db
