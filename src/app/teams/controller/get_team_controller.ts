@@ -28,9 +28,8 @@ export class GetTeamController {
             const teams = await this.service.call(params)
             const s = new SuccessResponse()
             if (teams.length === 0) {
-                s.message = "No Content"
                 s.statusCode = 204
-                return reply.code(s.statusCode).send({ message: s.message })
+                return reply.code(s.statusCode).send();
             }
             return reply.code(s.statusCode).send(teams)
 

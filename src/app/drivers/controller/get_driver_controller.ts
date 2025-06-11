@@ -20,6 +20,10 @@ export class GetDriverController {
         try {
             const params: FilterDriverParamsJson = request.query;
             const response = await this.service.call(params);
+            if (response.length === 0) {
+                const s = new SuccessResponse(204);
+                return reply.status(s.statusCode).send();
+            }
             const s = new SuccessResponse(200);
             return reply.code(s.statusCode).send(response);
         } catch (error) {
