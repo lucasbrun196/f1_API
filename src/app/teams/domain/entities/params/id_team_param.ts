@@ -1,9 +1,9 @@
 import ErrorResponse from "../../../../../responses/error";
 
-export class DeleteTeamParams {
+export class IdTeamParam {
     readonly id;
 
-    constructor({ id }: DeleteTeamJson) {
+    constructor({ id }: IdTeamJson) {
         if (typeof id == 'string') {
             id = Number(id);
             if (isNaN(id)) {
@@ -17,6 +17,6 @@ export class DeleteTeamParams {
     }
 }
 
-export type DeleteTeamJson = {
+export type IdTeamJson = {
     id: number | string;
 }

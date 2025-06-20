@@ -1,0 +1,5 @@
+import { IdTeamJson } from "../entities/params/id_team_param";
+
+export interface IGetTeamImagePathRepository {
+    call(params: IdTeamJson): Promise<string>;
+}

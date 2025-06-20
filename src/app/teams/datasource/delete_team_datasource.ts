@@ -3,7 +3,7 @@ import { IDeleteTeamDatasource } from "./i_delete_team_datasource";
 import { TeamEntity } from "../domain/entities/typeorm/team_entity";
 import ErrorResponse from "../../../responses/error";
 import { DriverEntity } from "../../drivers/domain/entities/typeorm/driver_entity";
-import { DeleteTeamParams } from "../domain/entities/params/delete_team_params";
+import { IdTeamParam } from "../domain/entities/params/id_team_param";
 
 export class DeleteTeamDatasource implements IDeleteTeamDatasource {
     private readonly db;
@@ -12,7 +12,7 @@ export class DeleteTeamDatasource implements IDeleteTeamDatasource {
         this.db = db
     }
 
-    async call(params: DeleteTeamParams): Promise<void> {
+    async call(params: IdTeamParam): Promise<void> {
         const query = this.db.getRepository(TeamEntity);
         const exist = await query.findOneBy(
             { id: params.id, }

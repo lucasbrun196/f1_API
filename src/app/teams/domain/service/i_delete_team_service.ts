@@ -1,5 +1,6 @@
-import { DeleteTeamJson } from "../entities/params/delete_team_params";
+
+import { IdTeamJson } from "../entities/params/id_team_param";
 
 export interface IDeleteTeamService {
-    call(params: DeleteTeamJson): Promise<void>
+    call(params: IdTeamJson): Promise<void>
 }

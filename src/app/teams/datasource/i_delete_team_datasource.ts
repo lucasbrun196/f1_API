@@ -1,5 +1,5 @@
-import { DeleteTeamParams } from "../domain/entities/params/delete_team_params";
+import { IdTeamParam } from "../domain/entities/params/id_team_param";
 
 export interface IDeleteTeamDatasource {
-    call(params: DeleteTeamParams): Promise<void>
+    call(params: IdTeamParam): Promise<void>
 }
