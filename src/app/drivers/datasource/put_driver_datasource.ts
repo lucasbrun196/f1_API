@@ -13,15 +13,11 @@ export class PutDriverDatasource implements IPutDriverDatasource {
         this.db = db;
     }
     async call(params: PutDriverParams): Promise<void> {
-
-        // to do fix update (on set)
-        const query = this.db.createQueryBuilder().update(DriverEntity);
         const existTeam = await this.db.createQueryBuilder()
             .select()
             .from(TeamEntity, 'team')
             .where('team.id = :id', { id: params.driverTeam })
             .getExists();
-
         const existDriver = await this.db.createQueryBuilder()
             .select()
             .from(DriverEntity, 'driver')
@@ -29,12 +25,11 @@ export class PutDriverDatasource implements IPutDriverDatasource {
             .getExists();
         if (!existTeam) throw new ErrorResponse(400, 'Team does not exist');
         if (!existDriver) throw new ErrorResponse(400, 'Driver does not exist');
-
-
+        const query = this.db.createQueryBuilder().update(DriverEntity);
         if (params.driverTeam) {
-            query.set({ id_team_fk: params.driverId });
+            query.set({ team: params.driverTeam });
         }
-        else if (params.driverTitleCount) {
+        if (params.driverTitleCount) {
             query.set({ titleCount: params.driverTitleCount });
         }
         query.where("id = :id", { id: params.driverId });
