@@ -5,8 +5,8 @@ import { DeleteTeamService } from "../domain/service/delete_team_service"
 import { IDeleteTeamService } from "../domain/service/i_delete_team_service"
 import ErrorResponse from "../../../responses/error"
 import SuccessResponse from "../../../responses/success"
-import { DeleteTeamRepository } from "../data/delete_team_repository"
 import { IdTeamJson } from "../domain/entities/params/id_team_param"
+import { DeleteTeamRepository } from "../data/repository/delete_team_repository"
 
 export class DeleteTeamController {
 

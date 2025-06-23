@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { IGetTeamImageDatasource } from './i_get_team_image_datasource';
+import { IGetTeamImageDatasource } from '../data/datasource/i_get_team_image_datasource';
 import getRootPath from '../../../utils/get_root_path';
 import ErrorResponse from '../../../responses/error';
 

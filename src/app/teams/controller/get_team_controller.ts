@@ -5,8 +5,8 @@ import { IGetTeamService } from "../domain/service/i_get_team_service"
 import { GetTeamService } from "../domain/service/get_team_service"
 import { AppDataSource } from "../../../database/data-source"
 import SuccessResponse from "../../../responses/success"
-import { GetTeamRepository } from "../data/get_team_repository"
 import { GetTeamDatasource } from "../datasource/get_team_datasource"
+import { GetTeamRepository } from "../data/repository/get_team_repository"
 
 export class GetTeamController {
 

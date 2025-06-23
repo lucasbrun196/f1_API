@@ -1,6 +1,7 @@
+import { PutDriverParamsJson, PutDriverParams } from "../../domain/entities/params/put_driver_params";
+import { IPutDriverRepository } from "../../domain/repository/i_put_driver_repository";
 import { IPutDriverDatasource } from "../datasource/i_put_driver_datasource";
-import { PutDriverParams, PutDriverParamsJson } from "../domain/entities/params/put_driver_params";
-import { IPutDriverRepository } from "../domain/repository/i_put_driver_repository";
+
 
 export class PutDriverRepository implements IPutDriverRepository {
     private readonly datasource;

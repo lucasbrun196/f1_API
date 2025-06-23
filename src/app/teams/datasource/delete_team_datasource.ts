@@ -1,9 +1,9 @@
 import { DataSource } from "typeorm";
-import { IDeleteTeamDatasource } from "./i_delete_team_datasource";
 import { TeamEntity } from "../domain/entities/typeorm/team_entity";
 import ErrorResponse from "../../../responses/error";
 import { DriverEntity } from "../../drivers/domain/entities/typeorm/driver_entity";
 import { IdTeamParam } from "../domain/entities/params/id_team_param";
+import { IDeleteTeamDatasource } from "../data/datasource/i_delete_team_datasource";
 
 export class DeleteTeamDatasource implements IDeleteTeamDatasource {
     private readonly db;

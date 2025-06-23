@@ -1,5 +1,5 @@
 import { IGetTeamImageDatasource } from "../datasource/i_get_team_image_datasource";
-import { IGetTeamImageRepository } from "../domain/repository/i_get_team_image_repository";
+import { IGetTeamImageRepository } from "../../domain/repository/i_get_team_image_repository";
 
 export class GetTeamImageRepository implements IGetTeamImageRepository {
 

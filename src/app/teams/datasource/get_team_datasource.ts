@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
-import { IGetTeamDatasource } from "./i_get_team_datasource";
 import { TeamEntity } from "../domain/entities/typeorm/team_entity";
 import { FilterTeamParams } from "../domain/entities/params/filter_team_params";
+import { IGetTeamDatasource } from "../data/datasource/i_get_team_datasource";
 
 export class GetTeamDatasource implements IGetTeamDatasource {
     private readonly db;

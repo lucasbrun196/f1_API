@@ -2,10 +2,10 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import ErrorResponse from "../../../responses/error";
 import { PutDriverParamsJson } from "../domain/entities/params/put_driver_params";
 import { PutDriverService } from "../domain/service/put_driver_service";
-import { PutDriverRepository } from "../data/put_driver_repository";
 import SuccessResponse from "../../../responses/success";
 import { PutDriverDatasource } from "../datasource/put_driver_datasource";
 import { AppDataSource } from "../../../database/data-source";
+import { PutDriverRepository } from "../data/repository/put_driver_repository";
 
 export class PutDriverController {
 

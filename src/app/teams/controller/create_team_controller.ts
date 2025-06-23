@@ -6,7 +6,7 @@ import { CreateTeamService } from "../domain/service/create_team_service";
 import { ICreateTeamService } from "../domain/service/i_create_team_service";
 import SuccessResponse from "../../../responses/success";
 import { CreateTeamDatasource } from "../datasource/create_team_datasource";
-import { CreateTeamRepository } from "../data/create_team_repository";
+import { CreateTeamRepository } from "../data/repository/create_team_repository";
 
 
 export class PostTeamController {

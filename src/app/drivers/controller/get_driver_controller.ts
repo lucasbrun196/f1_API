@@ -6,7 +6,7 @@ import { GetDriverDatasource } from "../datasource/get_driver_datasource";
 import SuccessResponse from "../../../responses/success";
 import ErrorResponse from "../../../responses/error";
 import { FilterDriverParamsJson } from "../domain/entities/params/filter_driver_params";
-import { GetDriverRepository } from "../data/get_driver_repository";
+import { GetDriverRepository } from "../data/repository/get_driver_repository";
 
 export class GetDriverController {
     private service: IGetDriverService

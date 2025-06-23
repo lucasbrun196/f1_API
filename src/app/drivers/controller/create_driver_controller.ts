@@ -6,7 +6,7 @@ import { ICreateDriverService } from "../domain/service/i_create_driver_service"
 import { CreateDriverService } from "../domain/service/create_driver_service";
 import { CreateDriverDatasource } from "../datasource/create_driver_datasource";
 import { AppDataSource } from "../../../database/data-source";
-import { CreateDriverRepository } from "../data/create_driver_repository";
+import { CreateDriverRepository } from "../data/repository/create_driver_repository";
 
 export class CreateDriverController {
     private service: ICreateDriverService

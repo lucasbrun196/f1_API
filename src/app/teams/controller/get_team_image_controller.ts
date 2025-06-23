@@ -3,13 +3,13 @@ import { IdTeamJson } from "../domain/entities/params/id_team_param";
 import ErrorResponse from "../../../responses/error";
 import { IGetTeamImagePathService } from "../domain/service/i_get_team_image_path_service";
 import { GetTeamImagePathService } from "../domain/service/get_team_image_path_service";
-import { GetTeamImagePathRepository } from "../data/get_team_image_path_repository";
 import { GetTeamImagePathDatasource } from "../datasource/get_team_image_path_datasource";
 import { AppDataSource } from "../../../database/data-source";
 import { IGetTeamImageService } from "../domain/service/i_get_team_image_service";
 import { GetTeamImageDatasource } from "../datasource/get_team_image_datasource";
-import { GetTeamImageRepository } from "../data/get_team_image_repository";
+import { GetTeamImageRepository } from "../data/repository/get_team_image_repository";
 import { GetTeamImageService } from "../domain/service/get_team_image_service";
+import { GetTeamImagePathRepository } from "../data/repository/get_team_image_path_repository";
 
 export class GetTeamImageController {
 

@@ -1,6 +1,7 @@
+import { IdTeamJson, IdTeamParam } from "../../domain/entities/params/id_team_param";
+import { IDeleteTeamRepository } from "../../domain/repository/i_delete_team_repository";
 import { IDeleteTeamDatasource } from "../datasource/i_delete_team_datasource";
-import { IdTeamJson, IdTeamParam } from "../domain/entities/params/id_team_param";
-import { IDeleteTeamRepository } from "../domain/repository/i_delete_team_repository";
+
 
 export class DeleteTeamRepository implements IDeleteTeamRepository {
     private readonly datasource;

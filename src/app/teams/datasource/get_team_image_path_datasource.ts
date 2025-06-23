@@ -3,7 +3,6 @@ import { IdTeamParam } from "../domain/entities/params/id_team_param";
 import { IGetTeamImagePathDatasource } from "./i_get_team_image_path_datasource";
 import { TeamEntity } from "../domain/entities/typeorm/team_entity";
 import ErrorResponse from "../../../responses/error";
-import { DriverEntity } from "../../drivers/domain/entities/typeorm/driver_entity";
 
 export class GetTeamImagePathDatasource implements IGetTeamImagePathDatasource {
 
