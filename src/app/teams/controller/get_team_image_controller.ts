@@ -6,13 +6,23 @@ import { GetTeamImagePathService } from "../domain/service/get_team_image_path_s
 import { GetTeamImagePathRepository } from "../data/get_team_image_path_repository";
 import { GetTeamImagePathDatasource } from "../datasource/get_team_image_path_datasource";
 import { AppDataSource } from "../../../database/data-source";
+import { IGetTeamImageService } from "../domain/service/i_get_team_image_service";
+import { GetTeamImageDatasource } from "../datasource/get_team_image_datasource";
+import { GetTeamImageRepository } from "../data/get_team_image_repository";
+import { GetTeamImageService } from "../domain/service/get_team_image_service";
 
 export class GetTeamImageController {
 
     private readonly getTeamImagePathService: IGetTeamImagePathService;
 
+    private readonly getTeamImageService: IGetTeamImageService;
+
     constructor() {
         const db = AppDataSource;
+
+        const getTeamImageDatasource = new GetTeamImageDatasource();
+        const getTeamImageRepository = new GetTeamImageRepository(getTeamImageDatasource);
+        this.getTeamImageService = new GetTeamImageService(getTeamImageRepository);
 
         const getTeamImagePathDatasource = new GetTeamImagePathDatasource(db);
         const getTeamImagePathRepository = new GetTeamImagePathRepository(getTeamImagePathDatasource);
@@ -23,7 +33,10 @@ export class GetTeamImageController {
         try {
             const params: IdTeamJson = request.params;
             const path = await this.getTeamImagePathService.call(params);
-            return reply.code(200).send({ message: path });
+            const image = await this.getTeamImageService.call(path);
+            return reply.code(200)
+                .header('Content-Type', 'image/png')
+                .send(image);
         } catch (error) {
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message });
