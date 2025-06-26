@@ -1,8 +1,8 @@
 import { DataSource } from "typeorm";
 import { DriverEntity } from "../domain/entities/typeorm/driver_entity";
-import { ICreateDriverDatasource } from "./i_create_driver_datasource";
 import { TeamEntity } from "../../teams/domain/entities/typeorm/team_entity";
 import ErrorResponse from "../../../responses/error";
+import { ICreateDriverDatasource } from "../data/datasource/i_create_driver_datasource";
 
 
 export class CreateDriverDatasource implements ICreateDriverDatasource {

@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
 import { DriverEntity } from "../domain/entities/typeorm/driver_entity";
-import { IGetDriverDatasource } from "./i_get_driver_datasource";
 import { FilterDriverParams } from "../domain/entities/params/filter_driver_params";
+import { IGetDriverDatasource } from "../data/datasource/i_get_driver_datasource";
 
 export class GetDriverDatasource implements IGetDriverDatasource {
     private readonly db;

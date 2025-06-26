@@ -1,9 +1,9 @@
 import { DataSource } from "typeorm";
 import { PutDriverParams } from "../domain/entities/params/put_driver_params";
-import { IPutDriverDatasource } from "./i_put_driver_datasource";
 import { DriverEntity } from "../domain/entities/typeorm/driver_entity";
 import { TeamEntity } from "../../teams/domain/entities/typeorm/team_entity";
 import ErrorResponse from "../../../responses/error";
+import { IPutDriverDatasource } from "../data/datasource/i_put_driver_datasource";
 
 export class PutDriverDatasource implements IPutDriverDatasource {
 
