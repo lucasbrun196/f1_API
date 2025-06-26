@@ -9,7 +9,7 @@ import { FilterDriverParamsJson } from "../domain/entities/params/filter_driver_
 import { GetDriverRepository } from "../data/repository/get_driver_repository";
 
 export class GetDriverController {
-    private service: IGetDriverService
+    private readonly service: IGetDriverService
     constructor() {
         const db = AppDataSource;
         const datasource = new GetDriverDatasource(db);

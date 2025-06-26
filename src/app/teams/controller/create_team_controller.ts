@@ -10,7 +10,7 @@ import { CreateTeamRepository } from "../data/repository/create_team_repository"
 
 
 export class PostTeamController {
-    private service: ICreateTeamService
+    private readonly service: ICreateTeamService
 
     constructor() {
         const db = AppDataSource

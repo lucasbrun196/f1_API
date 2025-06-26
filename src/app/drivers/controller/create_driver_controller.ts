@@ -9,7 +9,7 @@ import { AppDataSource } from "../../../database/data-source";
 import { CreateDriverRepository } from "../data/repository/create_driver_repository";
 
 export class CreateDriverController {
-    private service: ICreateDriverService
+    private readonly service: ICreateDriverService
     constructor() {
         const db = AppDataSource
         const datasource = new CreateDriverDatasource(db)

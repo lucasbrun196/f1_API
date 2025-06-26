@@ -6,10 +6,11 @@ import SuccessResponse from "../../../responses/success";
 import { PutDriverDatasource } from "../datasource/put_driver_datasource";
 import { AppDataSource } from "../../../database/data-source";
 import { PutDriverRepository } from "../data/repository/put_driver_repository";
+import { IPutDriverService } from "../domain/service/i_put_driver_service";
 
 export class PutDriverController {
 
-    private readonly service;
+    private readonly service: IPutDriverService;
 
     constructor() {
         const db = AppDataSource;

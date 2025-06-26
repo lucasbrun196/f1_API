@@ -1,6 +1,7 @@
 import { compare, genSalt, hash } from "bcryptjs";
+import { IPassword } from "./i_hash_password";
 
-export class Password {
+export class Password implements IPassword {
 
     private readonly password;
     private readonly hashedPassword;

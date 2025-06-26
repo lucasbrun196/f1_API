@@ -10,7 +10,7 @@ import { GetTeamRepository } from "../data/repository/get_team_repository"
 
 export class GetTeamController {
 
-    private service: IGetTeamService
+    private readonly service: IGetTeamService
 
     constructor() {
         const db = AppDataSource

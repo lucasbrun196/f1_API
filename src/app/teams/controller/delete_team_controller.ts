@@ -10,7 +10,7 @@ import { DeleteTeamRepository } from "../data/repository/delete_team_repository"
 
 export class DeleteTeamController {
 
-    private service: IDeleteTeamService
+    private readonly service: IDeleteTeamService
     constructor() {
         const db = AppDataSource
         const datasource = new DeleteTeamDatasource(db)
