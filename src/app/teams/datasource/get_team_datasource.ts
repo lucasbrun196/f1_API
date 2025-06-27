@@ -17,7 +17,6 @@ export class GetTeamDatasource implements IGetTeamDatasource {
         } else if (params.country) {
             query.where({ country: params.country })
         }
-        console.log(query);
 
         return await query.getMany();
     }

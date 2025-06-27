@@ -3,6 +3,7 @@ import { IdTeamParam } from "../domain/entities/params/id_team_param";
 import { IGetTeamImagePathDatasource } from "./i_get_team_image_path_datasource";
 import { TeamEntity } from "../domain/entities/typeorm/team_entity";
 import ErrorResponse from "../../../responses/error";
+import { DatabaseException } from "../../../utils/exceptions/database_exceptions";
 
 export class GetTeamImagePathDatasource implements IGetTeamImagePathDatasource {
 
@@ -13,22 +14,22 @@ export class GetTeamImagePathDatasource implements IGetTeamImagePathDatasource {
     }
 
     async call(params: IdTeamParam): Promise<string> {
-        const existTeam = await this.db.createQueryBuilder()
-            .select()
-            .from(TeamEntity, 'team')
-            .where('team.id = :id', { id: params.id })
-            .getExists();
+        try {
+            const path = await this.db.getRepository(TeamEntity)
+                .findOneOrFail({
+                    where: {
+                        id: params.id
+                    },
+                    select: ["pathImageTeam"]
 
-        if (!existTeam) throw new ErrorResponse(400, 'Team does not exist');
-        const path = await this.db.getRepository(TeamEntity)
-            .findOne({
-                where: {
-                    id: params.id
-                },
-                select: ["pathImageTeam"]
-            });
+                })
 
-        return path?.pathImageTeam!;
+
+            return path.pathImageTeam;
+        } catch (e) {
+            throw DatabaseException.error({ code: '23503', detail: 'id' });
+        }
+
 
     }
 

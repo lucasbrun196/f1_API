@@ -9,9 +9,6 @@ export class FilterTeamParams {
         country
     }: FilterTeamParamsJson
     ) {
-        console.log(name);
-        console.log(country);
-
 
         if ((name !== undefined && country !== undefined)) {
             throw new ErrorResponse(422, 'Query filter error')

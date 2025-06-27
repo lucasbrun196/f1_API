@@ -15,8 +15,6 @@ export class GetDriverDatasource implements IGetDriverDatasource {
         if (params.driverName) query.where("driver.driverName = :driverName", { driverName: params.driverName })
         if (params.teamId) query.andWhere("driver.team.id = :teamId", { teamId: params.teamId });
         query.orderBy('driver.id', 'ASC')
-        console.log(await query.getMany());
-
         return await query.getMany();
     }
 
