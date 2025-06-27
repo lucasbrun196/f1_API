@@ -7,7 +7,6 @@ import { PostUserDatasource } from "../datasource/post_user_datasource";
 import { PostUserRepository } from "../data/repository/post_user_repository";
 import { AppDataSource } from "../../../database/data-source";
 import SuccessResponse from "../../../responses/success";
-import { Password } from "../../../utils/hash_password/hash_password";
 
 export class PostUserController {
 

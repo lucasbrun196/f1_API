@@ -1,10 +1,9 @@
-import { Column, Driver, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { TeamEntity } from "../../../../teams/domain/entities/typeorm/team_entity";
 import { DriverEntity } from "../../../../drivers/domain/entities/typeorm/driver_entity";
-import { CONNREFUSED } from "dns";
 
 
-@Entity('Users')
+@Entity('User')
 export class UsersEntity {
 
     @PrimaryGeneratedColumn()
@@ -16,6 +15,9 @@ export class UsersEntity {
     @Column("varchar")
     password: string;
 
+    @Column("varchar")
+    username: string;
+
     @OneToOne(() => TeamEntity)
     @JoinColumn({ name: 'id_favorite_team_fk' })
     id_favorite_team_fk?: TeamEntity;
@@ -25,31 +27,45 @@ export class UsersEntity {
     id_favorite_driver_fk?: DriverEntity;
 
     @Column("varchar")
-    country?: string;
+    country: string;
 
     @Column("varchar")
     phone?: string;
 
-    constructor(userEntityJson: UsersEntityJson) {
-        this.id = userEntityJson.id;
-        this.email = userEntityJson.email;
-        this.password = userEntityJson.password;
-        this.id_favorite_team_fk = userEntityJson.id_favorite_team_fk;
-        this.id_favorite_driver_fk = userEntityJson.id_favorite_driver_fk;
-        this.country = userEntityJson.country;
-        this.phone = userEntityJson.phone
+    constructor(
+        email: string,
+        password: string,
+        username: string,
+        id_favorite_team_fk: TeamEntity | undefined,
+        id_favorite_driver_fk: DriverEntity | undefined,
+        country: string,
+        phone?: string,
+        id?: number
+    ) {
+
+
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.id_favorite_team_fk = id_favorite_team_fk;
+        this.id_favorite_driver_fk = id_favorite_driver_fk;
+        this.country = country;
+        if (phone != null) this.phone = phone;
+        if (id != null) this.id = id;
+
+
     }
 
 }
 
 
 export type UsersEntityJson = {
-    id?: number,
     email: string,
     password: string,
     username: string,
     id_favorite_team_fk: TeamEntity | undefined,
     id_favorite_driver_fk: DriverEntity | undefined,
-    country?: string,
-    phone: string,
+    country: string,
+    phone?: string,
+    id?: number,
 }

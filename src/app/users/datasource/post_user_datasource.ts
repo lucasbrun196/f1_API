@@ -1,6 +1,7 @@
 import { DataSource } from "typeorm";
 import { IPostUserDatasource } from "../data/datasource/i_post_user_datasource";
 import { UsersEntity } from "../domain/entities/typeorm/users_entity";
+import ErrorResponse from "../../../responses/error";
 
 export class PostUserDatasource implements IPostUserDatasource {
 
@@ -10,6 +11,12 @@ export class PostUserDatasource implements IPostUserDatasource {
         this.db = db;
     }
     async call(params: UsersEntity): Promise<void> {
-        await this.db.getRepository(UsersEntity).save(params);
+        await this.db.getRepository(UsersEntity).save(params).catch((e) => {
+            if (e.code == '23505') {
+                throw new ErrorResponse(400, 'User name or email already exist');
+            }
+            throw new ErrorResponse();
+        });
+
     }
 }

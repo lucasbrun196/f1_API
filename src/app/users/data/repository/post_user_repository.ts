@@ -15,8 +15,16 @@ export class PostUserRepository implements IPostUserRepository {
     async call(params: UsersEntityJson): Promise<void> {
         const password: IPassword = new Password(params.password);
         const hashPassword: string = await password.hashPassword();
-        params.password = hashPassword;
-        const userEntityParams = new UsersEntity(params);
+        const userEntityParams = new UsersEntity(
+            params.email,
+            hashPassword,
+            params.username,
+            params.id_favorite_team_fk,
+            params.id_favorite_driver_fk,
+            params.country,
+            params.phone,
+        );
         return await this.datasource.call(userEntityParams);
     }
 }
+
