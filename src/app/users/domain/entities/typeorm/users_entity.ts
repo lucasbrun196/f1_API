@@ -32,6 +32,9 @@ export class UsersEntity {
     @Column("varchar")
     phone?: string;
 
+    @Column('bool', { default: false })
+    admin?: boolean
+
     constructor(
         email: string,
         password: string,
@@ -40,7 +43,8 @@ export class UsersEntity {
         id_favorite_driver_fk: DriverEntity | undefined,
         country: string,
         phone?: string,
-        id?: number
+        id?: number,
+        admin?: boolean,
     ) {
 
 
@@ -52,8 +56,7 @@ export class UsersEntity {
         this.country = country;
         if (phone != null) this.phone = phone;
         if (id != null) this.id = id;
-
-
+        if(admin != null) this.admin = admin;
     }
 
 }
@@ -68,4 +71,5 @@ export type UsersEntityJson = {
     country: string,
     phone?: string,
     id?: number,
+    admin?: boolean,
 }

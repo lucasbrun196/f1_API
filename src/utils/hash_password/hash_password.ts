@@ -15,6 +15,6 @@ export class Password implements IPassword {
 
     hashPassword = async (): Promise<string> => await hash(this.password, await genSalt(this.saltNumber));
 
-    verifyPassword = async (): Promise<boolean> => await compare(this.hashedPassword!, this.password);
+    verifyPassword = async (): Promise<boolean> => await compare(this.password, this.hashedPassword!);
 
 }

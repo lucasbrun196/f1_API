@@ -18,6 +18,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/bcryptjs": "^3.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20.11.30",
     "dotenv": "^16.4.7",
     "nodemon": "^3.1.10",

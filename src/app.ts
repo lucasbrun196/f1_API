@@ -3,7 +3,6 @@ import { TeamModule } from "./app/teams/teams_module";
 import cors from "@fastify/cors"
 import "reflect-metadata"
 import { DriversModule } from "./app/drivers/drivers_module";
-import { AuthModule } from "./app/auth/auth_module";
 import { UsersModule } from "./app/users/user_module";
 
 
@@ -21,7 +20,6 @@ export function createApp() {
 
     app.register(new TeamModule().register);
     app.register(new DriversModule().register);
-    app.register(new AuthModule().register);
     app.register(new UsersModule().register);
 
     return app;
