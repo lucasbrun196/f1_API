@@ -3,7 +3,7 @@ import { IAuthUserDatasource } from "../data/datasource/i_auth_user_datasource";
 import { UserCredentialsParams } from "../domain/entities/params/user_credentials_params";
 import { UserTokenJson } from "../domain/entities/user_token";
 import { UsersEntity } from "../domain/entities/typeorm/users_entity";
-import { DatabaseException } from "../../../utils/exceptions/database_exceptions";
+import ErrorResponse from "../../../responses/error";
 
 export class AuthUserDatasource implements IAuthUserDatasource{
 
@@ -14,12 +14,16 @@ export class AuthUserDatasource implements IAuthUserDatasource{
     }
 
     async call(params: UserCredentialsParams): Promise<UserTokenJson> {
+        
         const query = await this.db
         .getRepository(UsersEntity)
-        .findOneOrFail({
-            where: { email: params.eamil },
-            select: [ "id", "email", "username", "admin", "password" ]
+        .findOneBy({
+            email: params.eamil,
         });
+        
+        if(query == null){
+            throw new ErrorResponse(403, 'Invalid credentials');
+        }
         return {
             id: query.id!,
             email: query.email,

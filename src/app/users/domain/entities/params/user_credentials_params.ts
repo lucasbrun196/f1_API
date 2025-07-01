@@ -1,3 +1,5 @@
+import ErrorResponse from "../../../../../responses/error";
+
 export class UserCredentialsParams {
 
     readonly eamil;
@@ -8,6 +10,9 @@ export class UserCredentialsParams {
         password
     } : UserCredentialsJson
     ) {
+        if(email == undefined || password == undefined){
+            throw new ErrorResponse(400, 'Missing information');
+        }
         this.eamil = email;
         this.password = password;
     }
@@ -15,6 +20,6 @@ export class UserCredentialsParams {
 }
 
 export type UserCredentialsJson = {
-    email: string,
-    password: string,
+    email: string | undefined,
+    password: string | undefined,
 }

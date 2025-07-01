@@ -15,14 +15,16 @@ export class AuthUserService implements IAuthUserService{
     }
     async call(params: UserCredentialsJson): Promise<string> {
         const userToken = await this.repository.call(params);
-        const password: IPassword = new Password(params.password, userToken.password);
+        const password: IPassword = new Password(params.password!, userToken.password);
         return await password.verifyPassword().then((valid) => {
             if(valid){
                 
                 return jwt.sign(
                     {
-                        user: {
-                            ...userToken
+                        data: {
+                            email: userToken.email,
+                            userName: userToken.userName,
+                            admin: userToken.admin,
                         },
                         sub: userToken.id,
                         iat: Math.floor(Date.now() / 1000)
