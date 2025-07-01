@@ -7,7 +7,10 @@ import { UsersModule } from "./app/users/user_module";
 
 
 export function createApp() {
-    const app = fastify({ logger: true })
+    const app = fastify({ logger: true });
+
+    app.decorateReply('locals', { userId: null, admin: null});
+    
     app.register(cors, {
         origin: "*",
         methods: [

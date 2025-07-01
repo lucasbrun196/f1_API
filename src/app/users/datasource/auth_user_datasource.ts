@@ -27,7 +27,6 @@ export class AuthUserDatasource implements IAuthUserDatasource{
         return {
             id: query.id!,
             email: query.email,
-            userName: query.username,
             admin: query.admin!,
             password: query.password,
         }

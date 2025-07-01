@@ -18,14 +18,11 @@ export class AuthUserService implements IAuthUserService{
         const password: IPassword = new Password(params.password!, userToken.password);
         return await password.verifyPassword().then((valid) => {
             if(valid){
-                
                 return jwt.sign(
                     {
                         data: {
-                            email: userToken.email,
-                            userName: userToken.userName,
-                            admin: userToken.admin,
-                        },
+                            admin: userToken.admin
+                        },  
                         sub: userToken.id,
                         iat: Math.floor(Date.now() / 1000)
                     },
