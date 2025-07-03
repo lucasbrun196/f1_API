@@ -4,11 +4,17 @@ import cors from "@fastify/cors"
 import "reflect-metadata"
 import { DriversModule } from "./app/drivers/drivers_module";
 import { UsersModule } from "./app/users/user_module";
+import { Locals } from "../locals";
 
+
+declare module 'fastify' {
+  interface FastifyReply {
+    locals: Locals
+  }
+}
 
 export function createApp() {
     const app = fastify({ logger: true });
-
     app.register(cors, {
         origin: "*",
         methods: [

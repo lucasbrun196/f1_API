@@ -11,11 +11,15 @@ const verifyJwt = async (request: FastifyRequest, reply: FastifyReply, done: Hoo
         const e = new ErrorResponse(401, 'Token not provided');
         return reply.code(e.statusCode).send({message: e.message});
     }   
-
     jwt.verify(accessToken, accessToken, (error, decode) => {
         if(error != null){
             const e = new ErrorResponse(401, error.message);
             return reply.code(e.statusCode).send({message: e.message});
+        }
+        const JwtPayload = decode as JwtPayload
+        reply.locals = {
+            userId: Number.parseInt(JwtPayload.sub! ?? -1) as number,
+            admin: JwtPayload.data.admin as boolean
         }
     });
     return done();
