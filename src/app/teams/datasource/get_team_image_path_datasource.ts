@@ -1,9 +1,9 @@
 import { DataSource } from "typeorm";
 import { IdTeamParam } from "../domain/entities/params/id_team_param";
-import { IGetTeamImagePathDatasource } from "./i_get_team_image_path_datasource";
 import { TeamEntity } from "../domain/entities/typeorm/team_entity";
 import ErrorResponse from "../../../responses/error";
 import { DatabaseException } from "../../../utils/exceptions/database_exceptions";
+import { IGetTeamImagePathDatasource } from "../data/datasource/i_get_team_image_path_datasource";
 
 export class GetTeamImagePathDatasource implements IGetTeamImagePathDatasource {
 
