@@ -14,20 +14,19 @@ declare module 'fastify' {
 }
 
 export function createApp() {
-    const app = fastify({ logger: true });
-    app.register(cors, {
-        origin: "*",
-        methods: [
-            "GET",
-            "POST",
-            "DELETE",
-            "UPDATE"
-        ]
-    });
+  const app = fastify({ logger: true });
+  app.register(cors, {
+    origin: "*",
+    methods: [
+      "GET",
+      "POST",
+      "DELETE",
+      "UPDATE"
+    ]
+  });
+  app.register(new TeamModule().register);
+  app.register(new DriversModule().register);
+  app.register(new UsersModule().register);
 
-    app.register(new TeamModule().register);
-    app.register(new DriversModule().register);
-    app.register(new UsersModule().register);
-
-    return app;
+  return app;
 }

@@ -7,6 +7,8 @@ import { PostTeamData } from "./models_route/post_team";
 import { GetTeamData } from "./models_route/get_team";
 import { DeleteTeamData } from "./models_route/delete_team";
 import { GetTeamImageData } from "./models_route/get_team_image";
+import verifyJwt from "../../middlewares/verify_jwt";
+import verifyUserAccess from "../../middlewares/verify_user_access";
 
 
 export class TeamModule {
@@ -17,9 +19,9 @@ export class TeamModule {
         const getController = new GetTeamController();
         const deleteController = new DeleteTeamController();
         const getTeamImageController = new GetTeamImageController();
-        app.post<PostTeamData>('/team', postController.postTeamController);
+        app.post<PostTeamData>('/team', { preHandler: [verifyJwt, verifyUserAccess] }, postController.postTeamController);
         app.get<GetTeamData>('/team', getController.getTeamController);
-        app.delete<DeleteTeamData>('/team/:id', deleteController.deleteTeamController);
+        app.delete<DeleteTeamData>('/team/:id', { preHandler: [verifyJwt, verifyUserAccess] }, deleteController.deleteTeamController);
         app.get<GetTeamImageData>('/team/image/:id', getTeamImageController.getTeamImageController);
     }
 
