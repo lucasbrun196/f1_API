@@ -1,7 +1,6 @@
 import { DataSource } from "typeorm";
 import { IPostUserDatasource } from "../data/datasource/i_post_user_datasource";
 import { UsersEntity } from "../domain/entities/typeorm/users_entity";
-import ErrorResponse from "../../../responses/error";
 import { DatabaseException } from "../../../utils/exceptions/database_exceptions";
 
 export class PostUserDatasource implements IPostUserDatasource {
