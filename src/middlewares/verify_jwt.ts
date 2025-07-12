@@ -5,7 +5,7 @@ import ErrorResponse from "../responses/error";
 
 
 
-const verifyJwt = async (request: FastifyRequest, reply: FastifyReply, done: HookHandlerDoneFunction) => {
+const verifyJwt = (request: FastifyRequest, reply: FastifyReply, done: HookHandlerDoneFunction) => {
     const accessToken = request.headers.accesstoken as string | undefined;
 
     if (accessToken === undefined) {
