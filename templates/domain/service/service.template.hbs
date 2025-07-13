@@ -7,6 +7,6 @@ export class {{resourceName}}Service implements I{{resourceName}}Service {
         this.repository = repository;
     }
     async call(params: any): Promise<any> {
-        await this.repository.call(params)
+        return await this.repository.call(params)
     }
 }
