@@ -1,0 +1,15 @@
+import { DataSource } from "typeorm";
+import { I{{resourceName}}Datasource } from "../data/datasource/i_{{lowerSnakeCase resourceName}}_datasource";
+
+export class {{resourceName}}Datasource implements I{{resourceName}}Datasource {
+
+    private readonly db;
+
+    constructor(db: DataSource) {
+        this.db = db;
+    }
+
+    async call(params: any): Promise<any> {
+        return {};
+    }
+}

@@ -1,0 +1,33 @@
+import { FastifyReply, FastifyRequest } from "fastify";
+import { I{{resourceName}}Service } from "../domain/service/i_{{lowerSnakeCase resourceName}}_service";
+import { {{resourceName}}Service } from "../domain/service/{{lowerSnakeCase resourceName}}_service";
+import { {{resourceName}}Repository } from "../data/repository/{{lowerSnakeCase resourceName}}_repository";
+import { {{resourceName}}Datasource } from "../datasource/{{lowerSnakeCase resourceName}}_datasource";
+import { AppDataSource } from "../../../database/data-source";
+import ErrorResponse from "../../../responses/error";
+import SuccessResponse from "../../../responses/success";
+
+export class {{resourceName}}Controller {
+
+    private readonly service: I{{resourceName}}Service;
+
+    constructor() {
+        const datasource = new {{resourceName}}Datasource(AppDataSource);
+        const repository = new {{resourceName}}Repository(datasource);
+        this.service = new {{resourceName}}Service(repository);
+    }
+
+    {{camelCase resourceName}}Controller = async (request: FastifyRequest, reply: FastifyReply) => {
+        try {
+            const params: any = request.body;
+            const s = new SuccessResponse();
+            return reply.code(s.statusCode);
+        } catch (error) {
+            if (error instanceof ErrorResponse) {
+                return reply.code(error.statusCode).send({ message: error.message });
+            }
+            const e = new ErrorResponse();
+            return reply.code(e.statusCode).send({ message: e.message });
+        }
+    }
+}

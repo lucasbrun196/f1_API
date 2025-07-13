@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { DriverEntity, DriverEntityJson } from "../domain/entities/typeorm/driver_entity";
+import { DriverEntityJson } from "../domain/entities/typeorm/driver_entity";
 import ErrorResponse from "../../../responses/error";
 import SuccessResponse from "../../../responses/success";
 import { ICreateDriverService } from "../domain/service/i_create_driver_service";

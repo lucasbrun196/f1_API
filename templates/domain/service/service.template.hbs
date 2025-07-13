@@ -1,0 +1,12 @@
+import { I{{resourceName}}Repository } from "../repository/i_{{lowerSnakeCase resourceName}}_repository";
+import { I{{resourceName}}Service } from "./i_{{lowerSnakeCase resourceName}}_service";
+
+export class {{resourceName}}Service implements I{{resourceName}}Service {
+    private readonly repository;
+    constructor(repository: I{{resourceName}}Repository) {
+        this.repository = repository;
+    }
+    async call(params: any): Promise<any> {
+        await this.repository.call(params)
+    }
+}

@@ -1,0 +1,15 @@
+import { I{{resourceName}}Repository } from "../../domain/repository/i_{{lowerSnakeCase resourceName}}_repository";
+import { I{{resourceName}}Datasource } from "../datasource/i_{{lowerSnakeCase resourceName}}_datasource";
+
+export class {{resourceName}}Repository implements I{{resourceName}}Repository {
+
+    private readonly datasource;
+
+    constructor(datasource: I{{resourceName}}Datasource) {
+        this.datasource = datasource;
+    }
+
+    async call(params: any): Promise<any> {
+        return this.datasource.call(postEntityParam);
+    }
+}
