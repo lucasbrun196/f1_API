@@ -4,19 +4,19 @@ export class PublicationEntity {
 
     readonly id;
     readonly content;
-    readonly likesCount;
+    readonly likescount;
     readonly id_user_fk;
 
     constructor({
         id,
         content,
-        likesCount,
+        likescount,
         id_user_fk,
     }: PublicationEntityJson
     ) {
         this.id = id;
         this.content = content,
-            this.likesCount = likesCount;
+            this.likescount = likescount;
         this.id_user_fk = id_user_fk;
     }
 
@@ -25,7 +25,7 @@ export class PublicationEntity {
 export type PublicationEntityJson = {
     id?: number,
     content: string,
-    likesCount: number,
+    likescount: number,
     id_user_fk: UsersEntity | number,
 
 }

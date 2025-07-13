@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { UsersEntity } from "../../../../users/domain/entities/typeorm/users_entity";
 
 
@@ -14,7 +14,7 @@ export class PostEntity {
     @Column('int')
     likesCount: number;
 
-    @OneToOne(() => UsersEntity)
+    @ManyToOne(() => UsersEntity)
     @JoinColumn({ name: 'id_user_fk' })
     id_user_fk: UsersEntity;
 

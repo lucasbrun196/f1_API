@@ -22,7 +22,7 @@ export class PostPublicationController {
         try {
             const params: PublicationEntityJson = {
                 content: request.body.content,
-                likesCount: 0,
+                likescount: 0,
                 id_user_fk: reply.locals.userId
             };
 

@@ -15,7 +15,7 @@ export class PostPublicationRepository implements IPostPublicationRepository {
     async call(params: PublicationEntityJson): Promise<void> {
         const postEntityParam = new PostEntity(
             params.content,
-            params.likesCount,
+            params.likescount,
             params.id_user_fk as UsersEntity,
             params.id,
         );
