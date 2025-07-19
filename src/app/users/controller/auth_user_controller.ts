@@ -12,24 +12,25 @@ export class AuthUserController {
 
     private readonly service: IAuthUserService;
 
-    constructor(){
+    constructor() {
         const datasource = new AuthUserDatasource(AppDataSource);
         const repository = new AuthUserRepository(datasource)
         this.service = new AuthUserService(repository);
     }
 
-    authUserController = async (request: FastifyRequest<{Headers: UserCredentialsJson}>, reply: FastifyReply) => {
-        try{
+    authUserController = async (request: FastifyRequest<{ Headers: UserCredentialsJson }>, reply: FastifyReply) => {
+        try {
             const params = request.headers;
             const result = await this.service.call(params);
             const s = new SuccessResponse(200, result);
-            return reply.code(s.statusCode).send({access_token: s.message});
-        }catch(error){
-            if(error instanceof ErrorResponse){
-                return reply.code(error.statusCode).send({message: error.message});
+            return reply.code(s.statusCode).send({ access_token: s.message });
+        } catch (error) {
+            console.log(error);
+            if (error instanceof ErrorResponse) {
+                return reply.code(error.statusCode).send({ message: error.message });
             }
             const e = new ErrorResponse();
-            return reply.code(e.statusCode).send({message: e.message});
+            return reply.code(e.statusCode).send({ message: e.message });
         }
     }
 }

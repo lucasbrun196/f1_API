@@ -34,6 +34,7 @@ export class GetTeamController {
             return reply.code(s.statusCode).send(teams)
 
         } catch (error) {
+            console.log(error);
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message })
             } else {

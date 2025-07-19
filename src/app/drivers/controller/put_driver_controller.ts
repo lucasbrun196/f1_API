@@ -31,6 +31,7 @@ export class PutDriverController {
             const s = new SuccessResponse(200, 'Updated');
             return reply.status(s.statusCode).send({ message: s.message });
         } catch (error) {
+            console.log(error);
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message });
             } else {

@@ -30,6 +30,7 @@ export class PostPublicationController {
             const s = new SuccessResponse(201, 'Created');
             return reply.code(s.statusCode).send({ message: s.message });
         } catch (error) {
+            console.log(error);
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message });
             }

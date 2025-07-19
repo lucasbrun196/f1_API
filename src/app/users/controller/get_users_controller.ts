@@ -33,6 +33,7 @@ export class GetUserController {
             }
             return reply.code(s.statusCode).send(result);
         } catch (error) {
+            console.log(error);
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message });
             }

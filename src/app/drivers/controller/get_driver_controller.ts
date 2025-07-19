@@ -27,6 +27,7 @@ export class GetDriverController {
             const s = new SuccessResponse(200);
             return reply.code(s.statusCode).send(response);
         } catch (error) {
+            console.log(error);
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message })
             } else {

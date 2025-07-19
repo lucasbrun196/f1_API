@@ -38,6 +38,7 @@ export class GetTeamImageController {
                 .header('Content-Type', 'image/png')
                 .send(image);
         } catch (error) {
+            console.log(error);
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message });
             }
