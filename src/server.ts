@@ -8,8 +8,10 @@ import 'dotenv/config'
 const server = createApp()
 AppDataSource.initialize().then(() => {
     console.log("Data Source has been initialized with successfully")
-    server.listen({ port: Number(process.env.PORT) }, (error) => {
+    server.listen({ port: Number(process.env.PORT), host: '0.0.0.0' }, (error) => {
         if (error) {
+            console.log(Number(process.env.PORT));
+
             console.log(error);
             process.exit(1);
 

@@ -4,7 +4,7 @@ import cors from "@fastify/cors"
 import "reflect-metadata"
 import { DriversModule } from "./app/drivers/drivers_module";
 import { UsersModule } from "./app/users/user_module";
-import { Locals } from "../locals";
+import { Locals } from "./utils/locals";
 import { PublicationModule } from "./app/publication/publications_module";
 
 

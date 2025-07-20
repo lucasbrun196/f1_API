@@ -4,15 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dist": "tsup src",
-    "dev": "tsx --env-file=.env src/server.ts",
+    "docker:down": "docker compose -f docker-compose.dev.yml down",
+    "docker:up": "docker compose -f docker-compose.dev.yml up -d",
+    "dev": "cp .env.dev .env && npm run docker:up && tsx --env-file=.env src/server.ts",
     "dev:nodemon": "npx nodemon src/server.ts",
     "start:dist": "npm run dist && node dist/src/index.js",
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:create": "npm run typeorm migration:create -n",
     "migration:run": "npx typeorm-ts-node-commonjs migration:run -d src/database/data-source.ts",
     "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d src/database/data-source.ts",
-    "generator": "plop"
+    "generator": "plop",
+    "build": "npx tsc"
   },
   "keywords": [],
   "author": "",
