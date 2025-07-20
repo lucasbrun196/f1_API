@@ -4,10 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "docker:down": "docker compose -f docker-compose.dev.yml down",
-    "docker:up": "docker compose -f docker-compose.dev.yml up -d",
-    "dev": "cp .env.dev .env && npm run docker:up && tsx --env-file=.env src/server.ts",
-    "dev:nodemon": "npx nodemon src/server.ts",
+    "dev": "cp .env.dev .env && tsx --env-file=.env src/server.ts",
+    "dev:nodemon": "cp .env.dev .env && npx nodemon src/server.ts",
     "start:dist": "npm run dist && node dist/src/index.js",
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:create": "npm run typeorm migration:create -n",
