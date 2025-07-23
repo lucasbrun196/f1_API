@@ -7,6 +7,7 @@ import { AppDataSource } from "../../../database/data-source";
 import ErrorResponse from "../../../responses/error";
 import SuccessResponse from "../../../responses/success";
 import { PublicationEntityJson } from "../domain/entities/publication_entity";
+import logger from "../../../utils/logger";
 
 export class PostPublicationController {
 
@@ -30,10 +31,10 @@ export class PostPublicationController {
             const s = new SuccessResponse(201, 'Created');
             return reply.code(s.statusCode).send({ message: s.message });
         } catch (error) {
-            console.log(error);
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message });
             }
+            logger(`Internal Server Error (PostPublicationController): ${error}`);
             const e = new ErrorResponse();
             return reply.code(e.statusCode).send({ message: e.message });
         }

@@ -7,6 +7,7 @@ import { AppDataSource } from "../../../database/data-source"
 import SuccessResponse from "../../../responses/success"
 import { GetTeamDatasource } from "../datasource/get_team_datasource"
 import { GetTeamRepository } from "../data/repository/get_team_repository"
+import logger from "../../../utils/logger"
 
 export class GetTeamController {
 
@@ -34,13 +35,13 @@ export class GetTeamController {
             return reply.code(s.statusCode).send(teams)
 
         } catch (error) {
-            console.log(error);
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message })
-            } else {
-                const e = new ErrorResponse()
-                return reply.code(e.statusCode).send({ message: e.message })
             }
+            logger(`Internal Server Error (GetTeamController): ${error}`);
+            const e = new ErrorResponse()
+            return reply.code(e.statusCode).send({ message: e.message })
+
         }
     }
 }

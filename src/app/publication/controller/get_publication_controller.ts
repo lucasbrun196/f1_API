@@ -7,6 +7,7 @@ import { AppDataSource } from "../../../database/data-source";
 import ErrorResponse from "../../../responses/error";
 import SuccessResponse from "../../../responses/success";
 import { PaginationJson } from "../../../utils/pagination";
+import logger from "../../../utils/logger";
 
 export class GetPublicationController {
 
@@ -25,10 +26,10 @@ export class GetPublicationController {
             const s = new SuccessResponse();
             return reply.code(s.statusCode).send(result);
         } catch (error) {
-            console.log(error);
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message });
             }
+            logger(`Internal Server Error (GetPublicationController): ${error}`);
             const e = new ErrorResponse();
             return reply.code(e.statusCode).send({ message: e.message });
         }

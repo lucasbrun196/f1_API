@@ -1,8 +1,10 @@
 import { DataSource } from "typeorm";
 import 'dotenv/config';
+import isDev from "../utils/is_dev";
 
-const root = process.env.NODE_ENV == "dev" ? "src" : "dist";
-const fileType = process.env.NODE_ENV == "dev" ? "ts" : "js";
+
+const root = isDev() ? "src" : "dist";
+const fileType = isDev() ? "ts" : "js";
 
 export const AppDataSource = new DataSource({
     type: 'postgres',
@@ -14,6 +16,6 @@ export const AppDataSource = new DataSource({
     entities: [`${root}/app/*/domain/entities/typeorm/*.${fileType}`],
     migrations: [`${root}/database/migrations/*.${fileType}`],
     synchronize: false,
-    logging: true,
+    logging: isDev(),
 
 });

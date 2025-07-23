@@ -7,6 +7,7 @@ import SuccessResponse from "../../../responses/success";
 import ErrorResponse from "../../../responses/error";
 import { FilterDriverParamsJson } from "../domain/entities/params/filter_driver_params";
 import { GetDriverRepository } from "../data/repository/get_driver_repository";
+import logger from "../../../utils/logger";
 
 export class GetDriverController {
     private readonly service: IGetDriverService
@@ -27,13 +28,13 @@ export class GetDriverController {
             const s = new SuccessResponse(200);
             return reply.code(s.statusCode).send(response);
         } catch (error) {
-            console.log(error);
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message })
-            } else {
-                const e = new ErrorResponse()
-                return reply.code(e.statusCode).send({ message: e.message })
             }
+            logger(`Internal Server Error (GetDriverController): ${error}`);
+            const e = new ErrorResponse()
+            return reply.code(e.statusCode).send({ message: e.message })
+
         }
     }
 }

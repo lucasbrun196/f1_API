@@ -7,6 +7,7 @@ import { CreateDriverService } from "../domain/service/create_driver_service";
 import { CreateDriverDatasource } from "../datasource/create_driver_datasource";
 import { AppDataSource } from "../../../database/data-source";
 import { CreateDriverRepository } from "../data/repository/create_driver_repository";
+import logger from "../../../utils/logger";
 
 export class CreateDriverController {
     private readonly service: ICreateDriverService
@@ -23,14 +24,14 @@ export class CreateDriverController {
             const s = new SuccessResponse(201, 'Created')
             return reply.code(s.statusCode).send({ message: s.message })
         } catch (error) {
-            console.log(error);
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message })
-            } else {
-                const e = new ErrorResponse()
-                return reply.code(e.statusCode).send({ message: e.message })
-
             }
+            logger(`Internal Server Error (CreateDriverController): ${error}`);
+            const e = new ErrorResponse()
+            return reply.code(e.statusCode).send({ message: e.message })
+
+
         }
     }
 }

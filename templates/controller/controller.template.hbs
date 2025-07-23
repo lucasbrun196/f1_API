@@ -26,6 +26,7 @@ export class {{resourceName}}Controller {
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message });
             }
+            logger(`Internal Server Error ({{resourceName}}): ${error}`);
             const e = new ErrorResponse();
             return reply.code(e.statusCode).send({ message: e.message });
         }

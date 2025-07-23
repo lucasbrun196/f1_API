@@ -7,6 +7,7 @@ import { PutDriverDatasource } from "../datasource/put_driver_datasource";
 import { AppDataSource } from "../../../database/data-source";
 import { PutDriverRepository } from "../data/repository/put_driver_repository";
 import { IPutDriverService } from "../domain/service/i_put_driver_service";
+import logger from "../../../utils/logger";
 
 export class PutDriverController {
 
@@ -31,13 +32,13 @@ export class PutDriverController {
             const s = new SuccessResponse(200, 'Updated');
             return reply.status(s.statusCode).send({ message: s.message });
         } catch (error) {
-            console.log(error);
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message });
-            } else {
-                const e = new ErrorResponse();
-                return reply.code(e.statusCode).send({ message: e.message });
             }
+            logger(`Internal Server Error (PutDriverController): ${error}`);
+            const e = new ErrorResponse();
+            return reply.code(e.statusCode).send({ message: e.message });
+
         }
     }
 }

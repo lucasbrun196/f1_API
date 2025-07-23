@@ -7,6 +7,7 @@ import ErrorResponse from "../../../responses/error"
 import SuccessResponse from "../../../responses/success"
 import { IdTeamJson } from "../domain/entities/params/id_team_param"
 import { DeleteTeamRepository } from "../data/repository/delete_team_repository"
+import logger from "../../../utils/logger"
 
 export class DeleteTeamController {
 
@@ -25,13 +26,13 @@ export class DeleteTeamController {
             const s = new SuccessResponse(200, 'Deleted')
             return reply.code(s.statusCode).send({ message: s.message })
         } catch (error) {
-            console.log(error);
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message })
-            } else {
-                const e = new ErrorResponse()
-                return reply.code(e.statusCode).send({ message: e.message })
             }
+            logger(`Internal Server Error (DeleteTeamController): ${error}`);
+            const e = new ErrorResponse()
+            return reply.code(e.statusCode).send({ message: e.message })
+
         }
     }
 }

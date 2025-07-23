@@ -10,6 +10,7 @@ import { GetTeamImageDatasource } from "../datasource/get_team_image_datasource"
 import { GetTeamImageRepository } from "../data/repository/get_team_image_repository";
 import { GetTeamImageService } from "../domain/service/get_team_image_service";
 import { GetTeamImagePathRepository } from "../data/repository/get_team_image_path_repository";
+import logger from "../../../utils/logger";
 
 export class GetTeamImageController {
 
@@ -38,10 +39,10 @@ export class GetTeamImageController {
                 .header('Content-Type', 'image/png')
                 .send(image);
         } catch (error) {
-            console.log(error);
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message });
             }
+            logger(`Internal Server Error (GetTeamImageController): ${error}`);
             const e = new ErrorResponse();
             return reply.code(e.statusCode).send({ message: e.message });
         }

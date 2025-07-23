@@ -7,6 +7,7 @@ import { ICreateTeamService } from "../domain/service/i_create_team_service";
 import SuccessResponse from "../../../responses/success";
 import { CreateTeamDatasource } from "../datasource/create_team_datasource";
 import { CreateTeamRepository } from "../data/repository/create_team_repository";
+import logger from "../../../utils/logger";
 
 
 export class PostTeamController {
@@ -25,13 +26,13 @@ export class PostTeamController {
             const s = new SuccessResponse(201, 'Created')
             return reply.code(s.statusCode).send({ message: s.message })
         } catch (error) {
-            console.log(error);
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message })
-            } else {
-                const e = new ErrorResponse()
-                return reply.code(e.statusCode).send({ messgae: e.message })
             }
+            logger(`Internal Server Error (PostTeamController): ${error}`);
+            const e = new ErrorResponse()
+            return reply.code(e.statusCode).send({ messgae: e.message })
+
 
         }
 

@@ -7,6 +7,7 @@ import { GetUserRepository } from "../data/repository/get_user_repository";
 import { GetUserDatasource } from "../datasource/get_user_datasource";
 import { AppDataSource } from "../../../database/data-source";
 import SuccessResponse from "../../../responses/success";
+import logger from "../../../utils/logger";
 
 export class GetUserController {
 
@@ -33,10 +34,10 @@ export class GetUserController {
             }
             return reply.code(s.statusCode).send(result);
         } catch (error) {
-            console.log(error);
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message });
             }
+            logger(`Internal Server Error (GetUserController): ${error}`);
             const e = new ErrorResponse();
             return reply.code(e.statusCode).send({ message: e.message });
         }

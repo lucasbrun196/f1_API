@@ -7,6 +7,7 @@ import { AppDataSource } from "../../../database/data-source";
 import { AuthUserRepository } from "../data/repository/auth_user_repository";
 import { UserCredentialsJson } from "../domain/entities/params/user_credentials_params";
 import SuccessResponse from "../../../responses/success";
+import logger from "../../../utils/logger";
 
 export class AuthUserController {
 
@@ -25,10 +26,10 @@ export class AuthUserController {
             const s = new SuccessResponse(200, result);
             return reply.code(s.statusCode).send({ access_token: s.message });
         } catch (error) {
-            console.log(error);
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message });
             }
+            logger(`Internal Server Error (AuthUserController): ${error}`);
             const e = new ErrorResponse();
             return reply.code(e.statusCode).send({ message: e.message });
         }

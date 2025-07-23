@@ -12,9 +12,7 @@ export class PostUserRepository implements IPostUserRepository {
         this.datasource = datasource;
     }
 
-    async call(params: UsersEntityJson): Promise<void> {
-        const password: IPassword = new Password(params.password);
-        const hashPassword: string = await password.hashPassword();
+    async call(params: UsersEntityJson, hashPassword: string): Promise<void> {
         const userEntityParams = new UsersEntity(
             params.email,
             hashPassword,
@@ -24,7 +22,7 @@ export class PostUserRepository implements IPostUserRepository {
             params.country,
             params.phone,
         );
-        return await this.datasource.call(userEntityParams);
+        return this.datasource.call(userEntityParams);
     }
 }
 
