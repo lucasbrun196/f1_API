@@ -30,7 +30,7 @@ export class LikePublicationController {
             const params: number = request.params.id;
             await this.service.call(params);
             const s = new SuccessResponse();
-            return reply.code(s.statusCode).send({});
+            return reply.code(s.statusCode).send();
         } catch (error) {
             if (error instanceof ErrorResponse) {
                 return reply.code(error.statusCode).send({ message: error.message });
