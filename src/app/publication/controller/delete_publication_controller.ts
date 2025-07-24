@@ -5,7 +5,7 @@ import { DeletePublicationDatasource } from "../datasource/delete_publication_da
 import { AppDataSource } from "../../../database/data-source";
 import ErrorResponse from "../../../responses/error";
 import SuccessResponse from "../../../responses/success";
-import { DeletePublicationData } from "../models_route/delete_publication";
+import { IdPublicationData } from "../models_route/id_publication";
 import { DeletePublicationParamsJson } from "../domain/entities/params/delete_publication_params";
 import { IDeletePublicationService } from "../domain/service/i_delete_publication_service";
 import { ValidatePublicationDatasource } from "../datasource/validate_publication_datasource";
@@ -24,7 +24,7 @@ export class DeletePublicationController {
         this.service = new DeletePublicationService(repository, validatePublicationRepository);
     }
 
-    deletePublicationController = async (request: FastifyRequest<DeletePublicationData>, reply: FastifyReply) => {
+    deletePublicationController = async (request: FastifyRequest<IdPublicationData>, reply: FastifyReply) => {
         try {
             const params: DeletePublicationParamsJson = {
                 id: request.params.id as number | string,

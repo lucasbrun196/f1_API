@@ -6,8 +6,9 @@ import { GetPublicationDatasource } from "../datasource/get_publication_datasour
 import { AppDataSource } from "../../../database/data-source";
 import ErrorResponse from "../../../responses/error";
 import SuccessResponse from "../../../responses/success";
-import { PaginationJson } from "../../../utils/pagination";
+import { Pagination, PaginationJson } from "../../../utils/pagination";
 import logger from "../../../utils/logger";
+import { GetPublicationParams, GetPublicationParamsJson } from "../domain/entities/params/get_publication_params";
 
 export class GetPublicationController {
 
@@ -21,7 +22,9 @@ export class GetPublicationController {
 
     getPublicationController = async (request: FastifyRequest<{ Querystring: PaginationJson }>, reply: FastifyReply) => {
         try {
-            const params: PaginationJson = request.query;
+            const params: GetPublicationParamsJson = {
+                pagination: new Pagination(request.query)
+            }
             const result = await this.service.call(params);
             const s = new SuccessResponse();
             return reply.code(s.statusCode).send(result);
