@@ -1,0 +1,489 @@
+{
+	"info": {
+		"_postman_id": "987004d4-9b63-4c45-b5b3-d1f88f833b06",
+		"name": "f1_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33851461"
+	},
+	"item": [
+		{
+			"name": "driver",
+			"item": [
+				{
+					"name": "driverPost",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accesstoken",
+								"value": "",
+								"description": "JWT access token (only admin)",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"driverName\": \"arrasca\",\n    \"driverBirthday\": \"19/10/2004\",\n    \"driverPathImage\": \"path/image\",\n    \"driverNationality\": \"Brazilian\",\n    \"driverIdTeam\": 9\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/driver",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"driver"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driverGet",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}}/driver?teamId=1&isGetTeam=true&driverName=driverName",
+							"host": [
+								"{{baseURL}}}"
+							],
+							"path": [
+								"driver"
+							],
+							"query": [
+								{
+									"key": "teamId",
+									"value": "1"
+								},
+								{
+									"key": "isGetTeam",
+									"value": "true"
+								},
+								{
+									"key": "driverName",
+									"value": "driverName"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driverPut",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accesstoken",
+								"value": "",
+								"description": "JWT access token (only admin)",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"driverTeam\": 1,\n    \"driverTitleCount\": 1\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/driver/:id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"driver",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "teams",
+			"item": [
+				{
+					"name": "teamPost",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accesstoken",
+								"value": "",
+								"description": "JWT access token (only admin)",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"teamName\": \"team name\",\n    \"teamCountry\": \"team country\",\n    \"teamAbout\": \"team about\",\n    \"teamPathImage\": \"path for image in src/data/teams_photo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/team",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"team"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teamDeleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accesstoken",
+								"value": "",
+								"description": "JWT access token (only admin)",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/team/:id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"team",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teamGet",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/team?country=countryFiilter&name=teamFilter",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"team"
+							],
+							"query": [
+								{
+									"key": "country",
+									"value": "countryFiilter"
+								},
+								{
+									"key": "name",
+									"value": "teamFilter"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teamGetImage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/team/image/:id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"team",
+								"image",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "postUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"email@email.com\",\n    \"password\": \"password\",\n    \"username\": \"username\",\n    \"country\": \"Brazil\",\n    //\"id_favorite_team_fk\": 1, // optional \n    //\"id_favorite_driver_fk\": 1, // optional\n    \"phone\": \"99999999999\"    // optional\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/users",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUsers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accessToken",
+								"value": "",
+								"description": "JWT access token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/users",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "auth",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "email",
+								"value": "",
+								"description": "email",
+								"type": "text"
+							},
+							{
+								"key": "password",
+								"value": "",
+								"description": "password",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/auth",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "publication",
+			"item": [
+				{
+					"name": "postPublication",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accesstoken",
+								"value": "",
+								"description": "JWT access token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Publication content\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/publication",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"publication"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPublication",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accesstoken",
+								"value": "",
+								"description": "JWT access token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/publication?page=1&pageSize=5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"publication"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePublication",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accesstoken",
+								"value": "",
+								"description": "JWT access token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/publication/:id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"publication",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "likePublication",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accesstoken",
+								"value": "",
+								"description": "JWT access token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/publication/like/:id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"publication",
+								"like",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "localhost:3333",
+			"type": "default"
+		}
+	]
+}
